@@ -1,4 +1,4 @@
-import anime from '../dependencies/animejs/lib/anime.es'
+import anime from 'animejs'
 import transitions from './transitions'
 
 class MotionIO {

@@ -3,6 +3,7 @@ import 'lazysizes'
 
 // Vanilla Components.
 import MotionIO from './motion-io/motion-io'
+import MotionTextIO from './motion-io/motion-text-io'
 
 // Vue Components.
 import HelloWorld from './components/HelloWorld'
@@ -18,6 +19,11 @@ new Vue({
     },
 
     mounted() {
+
+        document.querySelectorAll('[data-motion-text]')
+            .forEach( el => new MotionTextIO( el, {
+
+            }))
 
         document.querySelectorAll('[data-motion]')
             .forEach( el => new MotionIO( el, {
