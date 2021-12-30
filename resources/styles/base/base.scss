@@ -1,0 +1,67 @@
+///
+/// = Base =
+///
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #FFF;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    color: $plain-text;
+    font-family: $body-font-stack;
+    font-size: $body-font-size;
+    line-height: $body-line-height;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: middle;
+    height: auto;
+
+    &[data-sizes="auto"] {
+        display: block;
+        width: 100%;
+    }
+}
+
+::selection {
+    background: $border;
+}
+
+section {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 80px 0;
+
+    &.-double {
+        min-height: 200vh;
+    }
+
+    &.-triple {
+        min-height: 300vh;
+    }
+
+    &:nth-child(even) {
+        background: #f9f9f9;
+    }
+}
+
+.box {
+    height: 300px;
+    width: 300px;
+    background: $blue-800;
+}
+
+.box__wrapper {
+    display: flex;
+    gap: 30px;
+}

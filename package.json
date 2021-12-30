@@ -1,0 +1,26 @@
+{
+	"name": "MotionIO",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"fractal": "fractal",
+		"dev": "mix",
+		"prod": "mix --production",
+		"watch": "mix watch",
+		"watch-poll": "mix watch -- -- watch-options-poll=1000",
+		"hot": "mix watch --hot",
+		"build": "npm run prod && npm run fractal build",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Tim Spears <timspears@imarc.com>",
+	"license": "ISC",
+	"dependencies": {
+		"animejs": "^3.2.1",
+		"imarc-boilerplate": "^5.0.9"
+	},
+	"devDependencies": {
+		"vue-loader": "^15.9.7",
+		"vue-template-compiler": "^2.6.14"
+	}
+}
