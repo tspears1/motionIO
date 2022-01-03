@@ -28,6 +28,7 @@ class MotionIO {
       this.group = false
       this.preset = 'fadeIn'
       this.stagger = false
+      this.targets = ''
 
       // Override defaults.
       Object.assign( this, options )
@@ -56,10 +57,9 @@ class MotionIO {
       const isIntersecting = () => {
          // Run Animation.
          if ( this.hasEntered ) {
-            this.anime.pause()
-            this.anime.reverse()
+            this.anime.out.pause()
          }
-         this.anime.play()
+         this.anime.in.play()
 
          // Run Callback.
          this.onEnter()
@@ -77,9 +77,8 @@ class MotionIO {
 
       const isNotIntersecting = () => {
          if ( ! this.once && this.hasEntered ) {
-            this.anime.pause()
-            this.anime.reverse()
-            this.anime.play()
+            this.anime.in.pause()
+            this.anime.out.play()
          }
          this.onLeave()
       }
@@ -99,28 +98,48 @@ class MotionIO {
    }
 
    initAnime() {
-      const transitionStyle = this.custom ? this.custom : transitions[`${this.preset}`]
+      this.targets = this.group ? this.selector.children : this.selector
       const staggerOptions = Array.isArray( this.stagger ) ? anime.stagger( ...this.stagger ) : anime.stagger( this.stagger )
 
-      const settings = {
-         targets: this.group ? this.selector.children : this.selector,
-
-         autoplay: false,
-         loop: false,
-
-         ...transitionStyle,
-
-         delay: this.stagger ? staggerOptions : this.delay,
-         duration: this.duration,
-         easing: this.easing,
-
-         begin: this.onBegin,
-         complete: this.onComplete,
+      const transitionStyle = ( direction ) => {
+         const mode = this.custom ? this.custom : transitions[`${this.preset}`]
+         console.log(mode)
+         return mode[`${direction}`]
       }
 
-      this.anime = anime({
-         ...settings,
+      const settings = ( direction ) => {
+         return {
+
+            targets: this.targets,
+
+            autoplay: false,
+            loop: false,
+
+            ...transitionStyle( direction ),
+
+            delay: this.stagger ? staggerOptions : this.delay,
+            duration: this.duration,
+            easing: this.easing,
+
+            begin: this.onBegin,
+            complete: this.onComplete,
+
+         }
+      }
+
+      if ( !this.hasEntered ) {
+         anime.set( this.targets, { opacity: 0 } )
+      }
+
+      this.anime.in = anime({
+         ...settings( 'in' ),
       })
+
+      this.anime.out = anime({
+         ...settings( 'out' )
+      })
+
+      console.log( this.anime )
    }
 }
 

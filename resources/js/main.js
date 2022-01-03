@@ -22,7 +22,7 @@ new Vue({
 
         document.querySelectorAll('[data-motion-text]')
             .forEach( el => new MotionTextIO( el, {
-                preset: 'slideInUp',
+                preset: 'fade',
                 easing: 'easeOutBounce',
             }))
 
@@ -32,7 +32,7 @@ new Vue({
                 threshold: 0.5,
                 delay: 500,
                 easing: 'easeOutBounce',
-                preset: 'revealInRight',
+                preset: 'fade',
         }))
 
         document.querySelectorAll('[data-motion-group]')
@@ -42,7 +42,7 @@ new Vue({
                 easing: 'easeOutBounce',
                 group: true,
                 stagger: 250,
-                preset: 'revealInUp',
+                preset: 'fade',
 
         }))
     },

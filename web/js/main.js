@@ -66,7 +66,7 @@ new vue__WEBPACK_IMPORTED_MODULE_4__.default({
   mounted: function mounted() {
     document.querySelectorAll('[data-motion-text]').forEach(function (el) {
       return new _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_2__.default(el, {
-        preset: 'slideInUp',
+        preset: 'fade',
         easing: 'easeOutBounce'
       });
     });
@@ -76,7 +76,7 @@ new vue__WEBPACK_IMPORTED_MODULE_4__.default({
         threshold: 0.5,
         delay: 500,
         easing: 'easeOutBounce',
-        preset: 'revealInRight'
+        preset: 'fade'
       });
     });
     document.querySelectorAll('[data-motion-group]').forEach(function (el) {
@@ -86,7 +86,7 @@ new vue__WEBPACK_IMPORTED_MODULE_4__.default({
         easing: 'easeOutBounce',
         group: true,
         stagger: 250,
-        preset: 'revealInUp'
+        preset: 'fade'
       });
     });
   }
@@ -164,7 +164,8 @@ var MotionIO = /*#__PURE__*/function () {
     this.easing = 'linear';
     this.group = false;
     this.preset = 'fadeIn';
-    this.stagger = false; // Override defaults.
+    this.stagger = false;
+    this.targets = ''; // Override defaults.
 
     Object.assign(this, options);
     this.init();
@@ -197,12 +198,10 @@ var MotionIO = /*#__PURE__*/function () {
       var isIntersecting = function isIntersecting() {
         // Run Animation.
         if (_this.hasEntered) {
-          _this.anime.pause();
-
-          _this.anime.reverse();
+          _this.anime.out.pause();
         }
 
-        _this.anime.play(); // Run Callback.
+        _this.anime["in"].play(); // Run Callback.
 
 
         _this.onEnter(); // Update on first entrance.
@@ -220,11 +219,9 @@ var MotionIO = /*#__PURE__*/function () {
 
       var isNotIntersecting = function isNotIntersecting() {
         if (!_this.once && _this.hasEntered) {
-          _this.anime.pause();
+          _this.anime["in"].pause();
 
-          _this.anime.reverse();
-
-          _this.anime.play();
+          _this.anime.out.play();
         }
 
         _this.onLeave();
@@ -244,22 +241,40 @@ var MotionIO = /*#__PURE__*/function () {
   }, {
     key: "initAnime",
     value: function initAnime() {
-      var transitionStyle = this.custom ? this.custom : _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+      var _this2 = this;
+
+      this.targets = this.group ? this.selector.children : this.selector;
       var staggerOptions = Array.isArray(this.stagger) ? animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(this.stagger)) : animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger(this.stagger);
 
-      var settings = _objectSpread(_objectSpread({
-        targets: this.group ? this.selector.children : this.selector,
-        autoplay: false,
-        loop: false
-      }, transitionStyle), {}, {
-        delay: this.stagger ? staggerOptions : this.delay,
-        duration: this.duration,
-        easing: this.easing,
-        begin: this.onBegin,
-        complete: this.onComplete
-      });
+      var transitionStyle = function transitionStyle(direction) {
+        var mode = _this2.custom ? _this2.custom : _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(_this2.preset)];
+        console.log(mode);
+        return mode["".concat(direction)];
+      };
 
-      this.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread({}, settings));
+      var settings = function settings(direction) {
+        return _objectSpread(_objectSpread({
+          targets: _this2.targets,
+          autoplay: false,
+          loop: false
+        }, transitionStyle(direction)), {}, {
+          delay: _this2.stagger ? staggerOptions : _this2.delay,
+          duration: _this2.duration,
+          easing: _this2.easing,
+          begin: _this2.onBegin,
+          complete: _this2.onComplete
+        });
+      };
+
+      if (!this.hasEntered) {
+        animejs__WEBPACK_IMPORTED_MODULE_0__.default.set(this.targets, {
+          opacity: 0
+        });
+      }
+
+      this.anime["in"] = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread({}, settings('in')));
+      this.anime.out = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread({}, settings('out')));
+      console.log(this.anime);
     }
   }]);
 
@@ -535,8 +550,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var transitions = {
-  fadeIn: {
-    opacity: [0, 1]
+  fade: {
+    "in": {
+      opacity: 1
+    },
+    out: {
+      opacity: 0
+    }
   },
   slideInDown: {
     opacity: [0, 1],

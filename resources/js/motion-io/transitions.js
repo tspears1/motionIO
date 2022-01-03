@@ -1,7 +1,14 @@
 const transitions = {
 
-   fadeIn: {
-      opacity: [0, 1]
+   fade: {
+      in: {
+         opacity: 1
+      },
+
+      out: {
+         opacity: 0
+      }
+
    },
 
    slideInDown: {
