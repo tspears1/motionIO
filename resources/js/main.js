@@ -32,7 +32,7 @@ new Vue({
                 threshold: 0.5,
                 delay: 500,
                 easing: 'easeOutBounce',
-                preset: 'revealInRight',
+                preset: 'slideInRight',
         }))
 
         document.querySelectorAll('[data-motion-group]')

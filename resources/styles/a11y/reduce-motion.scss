@@ -1,0 +1,25 @@
+:root {
+   --durationBase: 1;
+
+   @media screen and ( prefers-reduced-motion: reduce ) {
+      --durationBase: 0;
+   }
+}
+
+// Use --durationBase with all Transitions and Animations.
+// Ex.
+// *  transition: opacity calc( var(--durationBase) * 250ms ) ease-in-out;
+
+
+@mixin transition( $property, $duration, $easing ) {
+   transition: $property calc( var(--durationBase) * $duration ) $easing;
+}
+
+
+// Mixin if CSS Custom properties isn't supported
+
+// * @mixin transition( $property, $duration, $easing ) {
+// *    @media screen and ( prefers-reduced-motion: no-preference ) {
+// *      transition: $property $duration $easing;
+// *   }
+// * }

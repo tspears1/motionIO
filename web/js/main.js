@@ -76,7 +76,7 @@ new vue__WEBPACK_IMPORTED_MODULE_4__.default({
         threshold: 0.5,
         delay: 500,
         easing: 'easeOutBounce',
-        preset: 'revealInRight'
+        preset: 'slideInRight'
       });
     });
     document.querySelectorAll('[data-motion-group]').forEach(function (el) {
