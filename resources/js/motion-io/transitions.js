@@ -63,8 +63,6 @@ const transitions = {
 
    // tilt
 
-   // reveal
-
    // zoom
 
    // flip

@@ -15,15 +15,25 @@
                <h2 data-motion-text>Welcome to our page!</h2>
             </section>
 
-            <section class="viewport -double">
-               <div class="box" data-motion >
-                  <img src="https://source.unsplash.com/random/300×300" />
-               </div>
+            <section class="viewport -double -vue">
+               <motion easing="easeOutBounce" preset="slideInDown" :children="true" :stagger="250">
+                  <div class="box__wrapper">
+                     <div class="box -red">
+                        <img src="https://source.unsplash.com/random/300×300" />
+                     </div>
+                     <div class="box -yellow">
+                        <img src="https://source.unsplash.com/random/300×300" />
+                     </div>
+                     <div class="box -green">
+                        <img src="https://source.unsplash.com/random/300×300" />
+                     </div>
+                  </div>
+               </motion>
             </section>
 
             <section class="viewport -double">
                <div class="box__wrapper" data-motion-group>
-                  <div class="box">
+                  <div class="box -red">
                      <img src="https://source.unsplash.com/random/300×300" />
                   </div>
                   <div class="box">

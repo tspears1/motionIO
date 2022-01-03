@@ -7,6 +7,7 @@ import MotionTextIO from './motion-io/motion-text-io'
 
 // Vue Components.
 import HelloWorld from './components/HelloWorld'
+import Motion from './components/motion-io-vue'
 
 // Vue.
 import Vue from 'vue'
@@ -16,6 +17,7 @@ new Vue({
     el: '#root',
     components: {
         HelloWorld,
+        Motion,
     },
 
     mounted() {
