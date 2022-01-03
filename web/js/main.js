@@ -65,7 +65,10 @@ new vue__WEBPACK_IMPORTED_MODULE_4__.default({
   },
   mounted: function mounted() {
     document.querySelectorAll('[data-motion-text]').forEach(function (el) {
-      return new _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_2__.default(el, {});
+      return new _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_2__.default(el, {
+        preset: 'slideInUp',
+        easing: 'easeOutBounce'
+      });
     });
     document.querySelectorAll('[data-motion]').forEach(function (el) {
       return new _motion_io_motion_io__WEBPACK_IMPORTED_MODULE_1__.default(el, {
@@ -280,6 +283,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
 /* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transitions */ "./resources/js/motion-io/transitions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -305,12 +314,42 @@ var MotionTextIO = /*#__PURE__*/function () {
   function MotionTextIO(el, options) {
     _classCallCheck(this, MotionTextIO);
 
-    this.selector = el;
+    this.selector = el; // Text.
+
     this.className = 'motionText';
     this.elementTag = 'span';
-    this.wrapper = true;
+    this.mask = false;
+    this.style = true;
     this.text = el.innerText;
     this.textGroup = [];
+    this.wrapper = true; // Callbacks.
+
+    this.onBegin = function () {};
+
+    this.onChange = function () {};
+
+    this.onComplete = function () {};
+
+    this.onEnter = function () {};
+
+    this.onLeave = function () {}; // IntersectionObserver.
+
+
+    this.once = false;
+    this.threshold = 0.5;
+    this.rootMargin = '0px 0px 0px 0px';
+    this.root = null;
+    this.hasEntered = false; // AnimeJS.
+
+    this.anime = {};
+    this.custom = false;
+    this.delay = 0;
+    this.duration = 500;
+    this.easing = 'linear';
+    this.preset = 'fadeIn';
+    this.stagger = 100; // Override defaults.
+
+    Object.assign(this, options);
     this.init();
   }
 
@@ -319,7 +358,8 @@ var MotionTextIO = /*#__PURE__*/function () {
     value: function init() {
       this.buildText();
       this.renderText();
-      console.log(this);
+      this.initAnime();
+      this.initObserver();
     }
   }, {
     key: "buildText",
@@ -338,23 +378,141 @@ var MotionTextIO = /*#__PURE__*/function () {
       this.selector.innerText = '';
 
       if (this.wrapper) {
-        this.buildContainer();
+        this.buildWrapper();
       }
     }
   }, {
-    key: "buildWapper",
-    value: function buildWapper() {
+    key: "buildWrapper",
+    value: function buildWrapper() {
       var wrapper = document.createElement(this.elementTag);
       wrapper.classList.add(this.className);
       this.selector.appendChild(wrapper);
+      this.buildWords(this.textGroup, wrapper);
     }
   }, {
     key: "buildWords",
-    value: function buildWords() {// forEach loop
+    value: function buildWords(phrase, wrapper) {
+      var _this2 = this;
+
+      phrase.forEach(function (word, index) {
+        var wordEl = document.createElement('span');
+        wordEl.classList.add("".concat(_this2.className, "__word"));
+        wordEl.classList.add("word-".concat(index + 1));
+
+        if (_this2.style) {
+          wordEl.style.display = 'inline-flex';
+
+          if (index > 0) {
+            wordEl.style.marginLeft = '0.5rem';
+          }
+        }
+
+        if (_this2.mask) {
+          wordEl.style.clipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )';
+        }
+
+        wrapper.appendChild(wordEl);
+
+        _this2.buildLetters(word, wordEl);
+      });
     }
   }, {
     key: "buildLetters",
-    value: function buildLetters() {// nested forEach loop
+    value: function buildLetters(word, wordEl) {
+      var _this3 = this;
+
+      word.forEach(function (letter, index) {
+        var letterEl = document.createElement('span');
+        letterEl.classList.add("".concat(_this3.className, "__letter"));
+        letterEl.classList.add("letter-".concat(index + 1));
+        letterEl.innerText = letter;
+        wordEl.appendChild(letterEl);
+      });
+    }
+  }, {
+    key: "destroy",
+    value: function destroy() {
+      if (this.observer) {
+        this.observer.disconnect();
+      }
+    }
+  }, {
+    key: "initObserver",
+    value: function initObserver() {
+      var _this4 = this;
+
+      var observerOptions = {
+        threshold: this.threshold,
+        root: this.root,
+        rootMargin: this.rootMargin
+      };
+
+      var isIntersecting = function isIntersecting() {
+        // Run Animation.
+        if (_this4.hasEntered) {
+          _this4.anime.pause();
+
+          _this4.anime.reverse();
+        }
+
+        _this4.anime.play(); // Run Callback.
+
+
+        _this4.onEnter(); // Update on first entrance.
+
+
+        if (!_this4.hasEntered) {
+          _this4.hasEntered = true;
+        } // Remove observer.
+
+
+        if (_this4.once) {
+          _this4.observer.unobserve(entries[0].target);
+        }
+      };
+
+      var isNotIntersecting = function isNotIntersecting() {
+        if (!_this4.once && _this4.hasEntered) {
+          _this4.anime.pause();
+
+          _this4.anime.reverse();
+
+          _this4.anime.play();
+        }
+
+        _this4.onLeave();
+      };
+
+      this.observer = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) {
+          isNotIntersecting();
+        } else {
+          isIntersecting();
+        }
+
+        _this4.onChange();
+      }, observerOptions);
+      this.observer.observe(this.selector);
+    }
+  }, {
+    key: "initAnime",
+    value: function initAnime() {
+      var transitionStyle = this.custom ? this.custom : _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+      var staggerOptions = Array.isArray(this.stagger) ? animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(this.stagger)) : animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger(this.stagger);
+
+      var settings = _objectSpread(_objectSpread({
+        targets: this.selector.querySelectorAll(".".concat(this.className, "__letter")),
+        autoplay: false,
+        loop: false
+      }, transitionStyle), {}, {
+        delay: this.stagger ? staggerOptions : this.delay,
+        duration: this.duration,
+        easing: this.easing,
+        begin: this.onBegin,
+        complete: this.onComplete
+      });
+
+      this.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread({}, settings));
     }
   }]);
 
@@ -411,6 +569,22 @@ var transitions = {
   revealInUp: {
     "-webkit-clip-path": ['polygon( 0% 100%, 100% 100%, 100% 100%, 0% 100% )', 'polygon( 0% 0%, 100% 0%, 100% 100%, 0% 100% )'],
     clipPath: ['polygon( 0% 100%, 100% 100%, 100% 100%, 0% 100% )', 'polygon( 0% 0%, 100% 0%, 100% 100%, 0% 100% )']
+  },
+  textRevealInDown: {
+    "-webkit-clip-path": ['polygon( -10% -10%, 110% -10%, 110% -10%, -10% -10% )', 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )'],
+    clipPath: ['polygon( -10% -10%, 110% -10%, 110% -10%, -10% -10% )', 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )']
+  },
+  textRevealInLeft: {
+    "-webkit-clip-path": ['polygon( -10% -10%, -10% -10%, -10% 110%, -10% 110% )', 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )'],
+    clipPath: ['polygon( -10% -10%, -10% -10%, -10% 110%, -10% 110% )', 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )']
+  },
+  textRevealInRight: {
+    "-webkit-clip-path": ['polygon( 110% -10%, 110% -10%, 110% 110%, 110% 110% )', 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )'],
+    clipPath: ['polygon( 110% -10%, 110% -10%, 110% 110%, 110% 110% )', 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )']
+  },
+  textRevealInUp: {
+    "-webkit-clip-path": ['polygon( -10% 110%, 110% 110%, 110% 110%, -10% 110% )', 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )'],
+    clipPath: ['polygon( -10% 110%, 110% 110%, 110% 110%, -10% 110% )', 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )']
   } // tilt
   // reveal
   // zoom

@@ -22,7 +22,8 @@ new Vue({
 
         document.querySelectorAll('[data-motion-text]')
             .forEach( el => new MotionTextIO( el, {
-
+                preset: 'slideInUp',
+                easing: 'easeOutBounce',
             }))
 
         document.querySelectorAll('[data-motion]')
