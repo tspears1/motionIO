@@ -6,6 +6,10 @@
 */
 const motionQuery = matchMedia('(prefers-reduced-motion)')
 
+// Store in localStorage for use in other files.
+// Ex.
+// * let reduceMotion = localStorage.getItem('reduceMotion')
+
 const updateLocalStorage = ( value ) => {
    localStorage.setItem('reduceMotion', value )
 }

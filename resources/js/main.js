@@ -24,6 +24,7 @@ new Vue({
             .forEach( el => new MotionTextIO( el, {
                 preset: 'slideInUp',
                 easing: 'easeOutBounce',
+                mask: true,
             }))
 
         document.querySelectorAll('[data-motion]')
@@ -40,7 +41,7 @@ new Vue({
                 duration: 1500,
                 threshold: 0.4,
                 easing: 'easeOutBounce',
-                group: true,
+                children: true,
                 stagger: 250,
                 preset: 'revealInUp',
 

@@ -1,6 +1,8 @@
 import anime from 'animejs'
 import transitions from './transitions'
 
+// Todo: Add 'targets' option to anime to allow array of elements inside parent
+
 class MotionIO {
    constructor(el, options) {
       this.selector = el
@@ -25,9 +27,10 @@ class MotionIO {
       this.delay = 0
       this.duration = 1000
       this.easing = 'linear'
-      this.group = false
+      this.children = false
       this.preset = 'fadeIn'
       this.stagger = false
+      this.targets = []
 
       // Override defaults.
       Object.assign( this, options )
@@ -103,7 +106,7 @@ class MotionIO {
       const staggerOptions = Array.isArray( this.stagger ) ? anime.stagger( ...this.stagger ) : anime.stagger( this.stagger )
 
       const settings = {
-         targets: this.group ? this.selector.children : this.selector,
+         targets: this.children ? this.selector.children : this.selector,
 
          autoplay: false,
          loop: false,

@@ -67,7 +67,8 @@ new vue__WEBPACK_IMPORTED_MODULE_4__.default({
     document.querySelectorAll('[data-motion-text]').forEach(function (el) {
       return new _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_2__.default(el, {
         preset: 'slideInUp',
-        easing: 'easeOutBounce'
+        easing: 'easeOutBounce',
+        mask: true
       });
     });
     document.querySelectorAll('[data-motion]').forEach(function (el) {
@@ -84,7 +85,7 @@ new vue__WEBPACK_IMPORTED_MODULE_4__.default({
         duration: 1500,
         threshold: 0.4,
         easing: 'easeOutBounce',
-        group: true,
+        children: true,
         stagger: 250,
         preset: 'revealInUp'
       });
@@ -132,7 +133,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
-
+ // Todo: Add 'targets' option to anime to allow array of elements inside parent
 
 var MotionIO = /*#__PURE__*/function () {
   function MotionIO(el, options) {
@@ -162,9 +163,10 @@ var MotionIO = /*#__PURE__*/function () {
     this.delay = 0;
     this.duration = 1000;
     this.easing = 'linear';
-    this.group = false;
+    this.children = false;
     this.preset = 'fadeIn';
-    this.stagger = false; // Override defaults.
+    this.stagger = false;
+    this.targets = []; // Override defaults.
 
     Object.assign(this, options);
     this.init();
@@ -248,7 +250,7 @@ var MotionIO = /*#__PURE__*/function () {
       var staggerOptions = Array.isArray(this.stagger) ? animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(this.stagger)) : animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger(this.stagger);
 
       var settings = _objectSpread(_objectSpread({
-        targets: this.group ? this.selector.children : this.selector,
+        targets: this.children ? this.selector.children : this.selector,
         autoplay: false,
         loop: false
       }, transitionStyle), {}, {
