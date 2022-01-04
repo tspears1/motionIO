@@ -569,7 +569,7 @@ new vue__WEBPACK_IMPORTED_MODULE_6__.default({
     document.querySelectorAll('[data-motion-text]').forEach(function (el) {
       return new _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_2__.default(el, {
         preset: 'slideInUp',
-        easing: 'easeOutBounce',
+        easing: 'easeOutExpo',
         mask: false
       });
     });
@@ -586,7 +586,7 @@ new vue__WEBPACK_IMPORTED_MODULE_6__.default({
       return new _motion_io_motion_io__WEBPACK_IMPORTED_MODULE_1__.default(el, {
         duration: 1500,
         threshold: 0.4,
-        easing: 'easeOutBounce',
+        easing: 'easeOutCirc',
         children: true,
         stagger: 250,
         preset: 'revealInUp'

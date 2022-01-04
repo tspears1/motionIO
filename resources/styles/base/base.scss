@@ -59,6 +59,12 @@ section {
     height: 300px;
     width: 300px;
     background: $blue-800;
+
+    img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
 }
 
 .box__wrapper {

@@ -27,7 +27,7 @@ new Vue({
         document.querySelectorAll('[data-motion-text]')
             .forEach( el => new MotionTextIO( el, {
                 preset: 'slideInUp',
-                easing: 'easeOutBounce',
+                easing: 'easeOutExpo',
                 mask: false,
             }))
 
@@ -44,7 +44,7 @@ new Vue({
             .forEach( el => new MotionIO( el, {
                 duration: 1500,
                 threshold: 0.4,
-                easing: 'easeOutBounce',
+                easing: 'easeOutCirc',
                 children: true,
                 stagger: 250,
                 preset: 'revealInUp',

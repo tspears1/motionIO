@@ -12,15 +12,32 @@
             <hello-world></hello-world>
 
             <section class="viewport -double -vue">
-               <motion-text tag="h2" preset="slideInUp" easing="easeOutBounce">Welcome to our page!</motion-text>
+               <motion-text tag="h2" preset="slideInRight" easing="easeOutBounce">Welcome to our page!</motion-text>
             </section>
 
             <section class="viewport -double">
                <h2 data-motion-text>Welcome to our page!</h2>
             </section>
 
+
             <section class="viewport -double -vue">
-               <motion easing="easeOutBounce" preset="slideInDown" :children="true" :stagger="250">
+               <motion
+                  easing="easeOutExpo"
+                  preset="slideInLeft"
+               >
+                  <div class="box -red">
+                     <img src="https://source.unsplash.com/random/300×300" />
+                  </div>
+               </motion>
+            </section>
+
+            <section class="viewport -double -vue">
+               <motion
+                  easing="easeOutBounce"
+                  preset="slideInDown"
+                  :children="true"
+                  :stagger="250"
+               >
                   <div class="box__wrapper">
                      <div class="box -red">
                         <img src="https://source.unsplash.com/random/300×300" />

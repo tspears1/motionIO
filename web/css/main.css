@@ -3086,6 +3086,12 @@ section:nth-child(even) {
   width: 300px;
   background: #2e354f;
 }
+.box img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
 
 .box__wrapper {
   display: flex;
