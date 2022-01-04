@@ -119,7 +119,7 @@ class MotionTextIO {
          rootMargin: this.rootMargin,
       }
 
-      const isIntersecting = () => {
+      const isIntersecting = ( entries ) => {
          // Run Animation.
          if ( this.hasEntered ) {
             this.anime.pause()
@@ -128,7 +128,7 @@ class MotionTextIO {
          this.anime.play()
 
          // Run Callback.
-         this.onEnter()
+         this.onEnter( entries )
 
          // Update on first entrance.
          if ( ! this.hasEntered ) {
@@ -141,23 +141,23 @@ class MotionTextIO {
          }
       }
 
-      const isNotIntersecting = () => {
+      const isNotIntersecting = ( entries ) => {
          if ( ! this.once && this.hasEntered ) {
             this.anime.pause()
             this.anime.reverse()
             this.anime.play()
          }
-         this.onLeave()
+         this.onLeave( entries )
       }
 
-      this.observer = new IntersectionObserver((entries) => {
+      this.observer = new IntersectionObserver( (entries) => {
 
          if (!entries[0].isIntersecting) {
-            isNotIntersecting()
+            isNotIntersecting( entries )
          } else {
-            isIntersecting()
+            isIntersecting( entries )
          }
-         this.onChange()
+         this.onChange( entries )
 
       }, observerOptions )
 
@@ -165,8 +165,12 @@ class MotionTextIO {
    }
 
    initAnime() {
-      const transitionStyle = this.custom ? this.custom : transitions[`${this.preset}`]
-      const staggerOptions = Array.isArray( this.stagger ) ? anime.stagger( ...this.stagger ) : anime.stagger( this.stagger )
+      const transitionStyle = this.custom || transitions[`${this.preset}`]
+      const staggerOptions = anime.stagger(
+         ...Array.isArray( this.stagger )
+         ? this.stagger
+         : [this.stagger]
+      )
 
       const settings = {
          targets: this.selector.querySelectorAll( `.${this.className}__letter` ),

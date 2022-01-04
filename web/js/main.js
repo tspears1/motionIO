@@ -89,6 +89,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -171,12 +174,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   observer: {},
   data: function data() {
     return {
-      hasEntered: false
+      hasEntered: false,
+      html: ''
     };
   },
   computed: {
     textGroup: function textGroup() {
-      var text = this.$slots["default"][0].text;
+      var text = this.getSlotContent(this.$slots["default"]);
       var words = text.split(' ');
       var group = [];
       words.map(function (word) {
@@ -193,7 +197,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {
     this.initAnime();
-    this.initObserver();
+    this.initObserver(); // this.html = this.$refs.text.innerHTML
+    // console.log( this.$refs.text )
+    // this.$refs.text.remove()
   },
   beforeDestroy: function beforeDestroy() {
     if (this.$options.observer) {
@@ -295,6 +301,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }));
     },
     // Utility.
+    getSlotContent: function getSlotContent(slot) {
+      var _ = this;
+
+      return slot.tag ? slot.tag : slot.map(function (node) {
+        return node.children ? _.getSlotContent(node.children) : node.text;
+      }).join('');
+    },
     warn: function warn(message) {
       if (!Vue.config.silent) {
         console.error(message);
@@ -951,7 +964,7 @@ var MotionTextIO = /*#__PURE__*/function () {
         rootMargin: this.rootMargin
       };
 
-      var isIntersecting = function isIntersecting() {
+      var isIntersecting = function isIntersecting(entries) {
         // Run Animation.
         if (_this4.hasEntered) {
           _this4.anime.pause();
@@ -962,7 +975,7 @@ var MotionTextIO = /*#__PURE__*/function () {
         _this4.anime.play(); // Run Callback.
 
 
-        _this4.onEnter(); // Update on first entrance.
+        _this4.onEnter(entries); // Update on first entrance.
 
 
         if (!_this4.hasEntered) {
@@ -975,7 +988,7 @@ var MotionTextIO = /*#__PURE__*/function () {
         }
       };
 
-      var isNotIntersecting = function isNotIntersecting() {
+      var isNotIntersecting = function isNotIntersecting(entries) {
         if (!_this4.once && _this4.hasEntered) {
           _this4.anime.pause();
 
@@ -984,25 +997,25 @@ var MotionTextIO = /*#__PURE__*/function () {
           _this4.anime.play();
         }
 
-        _this4.onLeave();
+        _this4.onLeave(entries);
       };
 
       this.observer = new IntersectionObserver(function (entries) {
         if (!entries[0].isIntersecting) {
-          isNotIntersecting();
+          isNotIntersecting(entries);
         } else {
-          isIntersecting();
+          isIntersecting(entries);
         }
 
-        _this4.onChange();
+        _this4.onChange(entries);
       }, observerOptions);
       this.observer.observe(this.selector);
     }
   }, {
     key: "initAnime",
     value: function initAnime() {
-      var transitionStyle = this.custom ? this.custom : _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
-      var staggerOptions = Array.isArray(this.stagger) ? animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(this.stagger)) : animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger(this.stagger);
+      var transitionStyle = this.custom || _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+      var staggerOptions = animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
 
       var settings = _objectSpread(_objectSpread({
         targets: this.selector.querySelectorAll(".".concat(this.className, "__letter")),

@@ -4,6 +4,9 @@
       :class="`${className}`"
       ref="motion"
    >
+      <!-- <span ref="text">
+         <slot></slot>
+      </span> -->
       <span
          :class="`${className}__word`"
          v-for="(word, index) in textGroup"
@@ -109,11 +112,13 @@ export default {
 
    data: () => ({
       hasEntered: false,
+      html: '',
    }),
 
    computed: {
+
       textGroup() {
-         const text = this.$slots.default[0].text
+         const text = this.getSlotContent( this.$slots.default )
          const words =  text.split(' ')
          let group = []
          words.map( (word) => {
@@ -138,6 +143,9 @@ export default {
    mounted() {
       this.initAnime()
       this.initObserver()
+      // this.html = this.$refs.text.innerHTML
+      // console.log( this.$refs.text )
+      // this.$refs.text.remove()
    },
 
    beforeDestroy() {
@@ -254,6 +262,17 @@ export default {
       },
 
       // Utility.
+      getSlotContent( slot ) {
+         const _ = this
+         return slot.tag
+         ? slot.tag
+         : slot.map(function (node) {
+            return node.children
+               ? _.getSlotContent(node.children)
+               : node.text
+         }).join('')
+      },
+
       warn( message ) {
          if ( !Vue.config.silent ) {
             console.error( message )
