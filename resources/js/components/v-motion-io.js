@@ -6,32 +6,6 @@ export default {
    name: 'motion',
 
    props: {
-      // Callbacks.
-      onBegin: {
-         type: Function,
-         required: false,
-         default: function() {},
-      },
-      onChange: {
-         type: Function,
-         required: false,
-         default: function() {},
-      },
-      onComplete: {
-         type: Function,
-         required: false,
-         default: function() {},
-      },
-      onEnter: {
-         type: Function,
-         required: false,
-         default: function() {},
-      },
-      onLeave: {
-         type: Function,
-         required: false,
-         default: function() {},
-      },
 
       // IntersectionObserver.
       once: {
@@ -39,20 +13,14 @@ export default {
          required: false,
          default: false,
       },
-      root: {
-         type: typeof HTMLElement !== 'undefined' ? HTMLElement : Object,
+      observerOptions: {
+         type: Object,
          required: false,
-         default: null,
-      },
-      rootMargin: {
-         type: [ String, Number ],
-         required: false,
-         default: '0px',
-      },
-      threshold: {
-         type: [ Array, Number ],
-         required: false,
-         default: 0.5,
+         default: () => ({
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5,
+         })
       },
 
       // AnimeJS.
@@ -92,50 +60,50 @@ export default {
 
    },
 
+   anime: {},
+   observer: {},
+
    data: () => ({
-      anime: {},
       hasEntered: false,
-      observer: {},
-      selector: null,
    }),
 
    mounted() {
-      this.selector = this.$slots.default[0].elm
       this.initAnime()
       this.initObserver()
    },
 
    beforeDestroy() {
-      if ( this.observer ) {
-         this.observer.disconnect()
+      if ( this.$options.observer ) {
+         this.$options.observer.disconnect()
       }
    },
 
    computed: {
-      observerOptions() {
-         return {
-            root: this.root,
-            rootMargin: this.rootMargin,
-            threshold: this.threshold,
-         }
+
+      selector() {
+         return this.$slots.default[0].elm
       },
 
       staggerOptions() {
-         return Array.isArray( this.stagger )
-            ? anime.stagger( ...this.stagger )
-            : anime.stagger( this.stagger )
+         return  anime.stagger(
+            ...Array.isArray( this.stagger )
+            ? this.stagger
+            : [this.stagger]
+         )
       },
 
       targetSelector() {
-         return Array.isArray( this.children )
-            ? this.selector.querySelectorAll( this.children )
-            : this.children == true
-            ? this.selector.children
-            : this.selector
+         if ( Array.isArray( this.children ) ) {
+            return this.selector.querySelectorAll( this.children )
+         } else if ( this.children == true ) {
+            return this.selector.children
+         } else {
+            return this.selector
+         }
       },
 
       transitionStyle() {
-         return this.custom ? this.custom : transitions[`${this.preset}`]
+         return this.custom || transitions[`${this.preset}`]
       },
 
    },
@@ -144,14 +112,14 @@ export default {
 
       // IntersectionObserver.
       initObserver() {
-         this.observer = new IntersectionObserver( (entries) => {
+         this.$options.observer = new IntersectionObserver( (entries) => {
 
             if ( !entries[0].isIntersecting ) {
-               this.isNotIntersecting()
+               this.isNotIntersecting( entries )
             } else {
-               this.isIntersecting()
+               this.isIntersecting( entries )
             }
-            this.onChange()
+            this.$emit('change', entries[0].isIntersecting )
 
          }, this.observerOptions )
 
@@ -163,28 +131,28 @@ export default {
       activateObserver() {
          if (this.$slots.default && this.$slots.default.length > 1) {
 
-            this.warn('[DashIntersect] You may only wrap one element in a <intersect> component.')
+            this.warn('[MotionIO] You may only wrap one element in a <intersect> component.')
 
          } else if (!this.$slots.default || this.$slots.default.length < 1) {
 
-            this.warn('[DashIntersect] You must have one child inside a <intersect> component.')
+            this.warn('[MotionIO] You must have one child inside a <intersect> component.')
 
             return
          }
 
-         this.observer.observe( this.selector )
+         this.$options.observer.observe( this.selector )
       },
 
-      isIntersecting() {
+      isIntersecting( entries ) {
          // Run Animation.
          if ( this.hasEntered ) {
-            this.anime.pause()
-            this.anime.reverse()
+            this.$options.anime.pause()
+            this.$options.anime.reverse()
          }
-         this.anime.play()
+         this.$options.anime.play()
 
          // Run Callback.
-         this.onEnter()
+         this.$emit('enter', entries[0])
 
          // Update on first entrance.
          if ( ! this.hasEntered ) {
@@ -193,22 +161,22 @@ export default {
 
          // Remove observer.
          if ( this.once ) {
-            this.observer.unobserve(entries[0].target)
+            this.$options.observer.unobserve(entries[0].target)
          }
       },
 
-      isNotIntersecting() {
+      isNotIntersecting( entries ) {
          if ( ! this.once && this.hasEntered ) {
-            this.anime.pause()
-            this.anime.reverse()
-            this.anime.play()
+            this.$options.anime.pause()
+            this.$options.anime.reverse()
+            this.$options.anime.play()
          }
-         this.onLeave()
+         this.$emit('leave', entries[0])
       },
 
       // AnimeJS.
       initAnime() {
-         this.anime = anime({
+         this.$options.anime = anime({
             targets: this.targetSelector,
 
             autoplay: false,
@@ -220,21 +188,21 @@ export default {
             duration: this.duration,
             easing: this.easing,
 
-            begin: this.onBegin,
-            complete: this.onComplete,
+            begin: (...anime) => {
+               this.$emit('begin', anime)
+            },
+            complete: (...anime) => {
+               this.$emit('complete', anime)
+            },
          })
       },
 
       // Utility.
       warn( message ) {
          if ( !Vue.config.silent ) {
-            console.warn( message )
+            console.error( message )
          }
       },
-
-      isEmpty( obj ) {
-         return Object.keys(obj).length === 0;
-      }
    },
 
    render () {

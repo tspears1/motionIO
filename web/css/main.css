@@ -3072,7 +3072,7 @@ section {
   margin: 80px 0;
 }
 section.-double {
-  min-height: 200vh;
+  min-height: 150vh;
 }
 section.-triple {
   min-height: 300vh;

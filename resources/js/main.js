@@ -7,7 +7,8 @@ import MotionTextIO from './motion-io/motion-text-io'
 
 // Vue Components.
 import HelloWorld from './components/HelloWorld'
-import Motion from './components/motion-io-vue'
+import Motion from './components/v-motion-io'
+import MotionText from './components/v-motion-text-io'
 
 // Vue.
 import Vue from 'vue'
@@ -18,6 +19,7 @@ new Vue({
     components: {
         HelloWorld,
         Motion,
+        MotionText,
     },
 
     mounted() {
@@ -26,7 +28,7 @@ new Vue({
             .forEach( el => new MotionTextIO( el, {
                 preset: 'slideInUp',
                 easing: 'easeOutBounce',
-                mask: true,
+                mask: false,
             }))
 
         document.querySelectorAll('[data-motion]')

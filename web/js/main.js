@@ -34,10 +34,281 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/motion-io-vue.js":
-/*!**************************************************!*\
-  !*** ./resources/js/components/motion-io-vue.js ***!
-  \**************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
+/* harmony import */ var _motion_io_transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../motion-io/transitions */ "./resources/js/motion-io/transitions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'motion-text',
+  props: {
+    applyStyles: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    className: {
+      type: String,
+      required: false,
+      "default": 'motionText'
+    },
+    tag: {
+      type: String,
+      required: false,
+      "default": 'span'
+    },
+    mask: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    wrapper: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    // IntersectionObserver.
+    once: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    observerOptions: {
+      type: Object,
+      required: false,
+      "default": function _default() {
+        return {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5
+        };
+      }
+    },
+    // AnimeJS.
+    custom: {
+      type: Object,
+      required: false
+    },
+    delay: {
+      type: [Number, Function],
+      required: false,
+      "default": 0
+    },
+    duration: {
+      type: [Number, Function],
+      required: false,
+      "default": 500
+    },
+    easing: {
+      type: [String, Function],
+      required: false,
+      "default": 'linear'
+    },
+    preset: {
+      type: String,
+      required: false,
+      "default": 'fadeIn'
+    },
+    stagger: {
+      type: [Array, Number],
+      required: false,
+      "default": 100
+    }
+  },
+  anime: {},
+  observer: {},
+  data: function data() {
+    return {
+      hasEntered: false
+    };
+  },
+  computed: {
+    textGroup: function textGroup() {
+      var text = this.$slots["default"][0].text;
+      var words = text.split(' ');
+      var group = [];
+      words.map(function (word) {
+        group = [].concat(_toConsumableArray(group), [word.split('')]);
+      });
+      return group;
+    },
+    staggerOptions: function staggerOptions() {
+      return animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
+    },
+    transitionStyle: function transitionStyle() {
+      return this.custom || _motion_io_transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+    }
+  },
+  mounted: function mounted() {
+    this.initAnime();
+    this.initObserver();
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.$options.observer) {
+      this.$options.observer.disconnect();
+    }
+  },
+  methods: {
+    addStyles: function addStyles(index) {
+      var styles = {};
+
+      if (this.applyStyles) {
+        styles.display = 'inline-flex';
+
+        if (index > 0) {
+          styles.marginLeft = '0.5rem';
+        }
+      }
+
+      if (this.mask) {
+        styles.clipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )';
+      }
+
+      return styles;
+    },
+    // IntersectionObserver.
+    initObserver: function initObserver() {
+      var _this = this;
+
+      this.$options.observer = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) {
+          _this.isNotIntersecting(entries);
+        } else {
+          _this.isIntersecting(entries);
+        }
+
+        _this.$emit('change', entries[0].isIntersecting);
+      }, this.observerOptions);
+      this.$nextTick(function () {
+        _this.activateObserver();
+      });
+    },
+    activateObserver: function activateObserver() {
+      if (this.$slots["default"] && this.$slots["default"].length > 1) {
+        this.warn('[MotionIO] You may only wrap one element in a <intersect> component.');
+      } else if (!this.$slots["default"] || this.$slots["default"].length < 1) {
+        this.warn('[MotionIO] You must have one child inside a <intersect> component.');
+        return;
+      }
+
+      this.$options.observer.observe(this.$refs.motion);
+    },
+    isIntersecting: function isIntersecting(entries) {
+      // Run Animation.
+      if (this.hasEntered) {
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+      }
+
+      this.$options.anime.play(); // Run Callback.
+
+      this.$emit('enter', entries[0]); // Update on first entrance.
+
+      if (!this.hasEntered) {
+        this.hasEntered = true;
+      } // Remove observer.
+
+
+      if (this.once) {
+        this.$options.observer.unobserve(entries[0].target);
+      }
+    },
+    isNotIntersecting: function isNotIntersecting(entries) {
+      if (!this.once && this.hasEntered) {
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+        this.$options.anime.play();
+      }
+
+      this.$emit('leave', entries[0]);
+    },
+    // AnimeJS.
+    initAnime: function initAnime() {
+      var _this2 = this;
+
+      this.$options.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread(_objectSpread({
+        targets: this.$refs.letter,
+        autoplay: false,
+        loop: false
+      }, this.transitionStyle), {}, {
+        delay: this.stagger ? this.staggerOptions : this.delay,
+        duration: this.duration,
+        easing: this.easing,
+        begin: function begin(anime) {
+          _this2.$emit('begin', anime);
+        },
+        complete: function complete(anime) {
+          _this2.$emit('complete', anime);
+        }
+      }));
+    },
+    // Utility.
+    warn: function warn(message) {
+      if (!Vue.config.silent) {
+        console.error(message);
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/v-motion-io.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/v-motion-io.js ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -72,52 +343,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'motion',
   props: {
-    // Callbacks.
-    onBegin: {
-      type: Function,
-      required: false,
-      "default": function _default() {}
-    },
-    onChange: {
-      type: Function,
-      required: false,
-      "default": function _default() {}
-    },
-    onComplete: {
-      type: Function,
-      required: false,
-      "default": function _default() {}
-    },
-    onEnter: {
-      type: Function,
-      required: false,
-      "default": function _default() {}
-    },
-    onLeave: {
-      type: Function,
-      required: false,
-      "default": function _default() {}
-    },
     // IntersectionObserver.
     once: {
       type: Boolean,
       required: false,
       "default": false
     },
-    root: {
-      type: typeof HTMLElement !== 'undefined' ? HTMLElement : Object,
+    observerOptions: {
+      type: Object,
       required: false,
-      "default": null
-    },
-    rootMargin: {
-      type: [String, Number],
-      required: false,
-      "default": '0px'
-    },
-    threshold: {
-      type: [Array, Number],
-      required: false,
-      "default": 0.5
+      "default": function _default() {
+        return {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5
+        };
+      }
     },
     // AnimeJS.
     children: {
@@ -154,40 +395,40 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       required: false
     }
   },
+  anime: {},
+  observer: {},
   data: function data() {
     return {
-      anime: {},
-      hasEntered: false,
-      observer: {},
-      selector: null
+      hasEntered: false
     };
   },
   mounted: function mounted() {
-    this.selector = this.$slots["default"][0].elm;
     this.initAnime();
     this.initObserver();
   },
   beforeDestroy: function beforeDestroy() {
-    if (this.observer) {
-      this.observer.disconnect();
+    if (this.$options.observer) {
+      this.$options.observer.disconnect();
     }
   },
   computed: {
-    observerOptions: function observerOptions() {
-      return {
-        root: this.root,
-        rootMargin: this.rootMargin,
-        threshold: this.threshold
-      };
+    selector: function selector() {
+      return this.$slots["default"][0].elm;
     },
     staggerOptions: function staggerOptions() {
-      return Array.isArray(this.stagger) ? animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(this.stagger)) : animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger(this.stagger);
+      return animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
     },
     targetSelector: function targetSelector() {
-      return Array.isArray(this.children) ? this.selector.querySelectorAll(this.children) : this.children == true ? this.selector.children : this.selector;
+      if (Array.isArray(this.children)) {
+        return this.selector.querySelectorAll(this.children);
+      } else if (this.children == true) {
+        return this.selector.children;
+      } else {
+        return this.selector;
+      }
     },
     transitionStyle: function transitionStyle() {
-      return this.custom ? this.custom : _motion_io_transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+      return this.custom || _motion_io_transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
     }
   },
   methods: {
@@ -195,14 +436,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     initObserver: function initObserver() {
       var _this = this;
 
-      this.observer = new IntersectionObserver(function (entries) {
+      this.$options.observer = new IntersectionObserver(function (entries) {
         if (!entries[0].isIntersecting) {
-          _this.isNotIntersecting();
+          _this.isNotIntersecting(entries);
         } else {
-          _this.isIntersecting();
+          _this.isIntersecting(entries);
         }
 
-        _this.onChange();
+        _this.$emit('change', entries[0].isIntersecting);
       }, this.observerOptions);
       this.$nextTick(function () {
         _this.activateObserver();
@@ -210,24 +451,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     activateObserver: function activateObserver() {
       if (this.$slots["default"] && this.$slots["default"].length > 1) {
-        this.warn('[DashIntersect] You may only wrap one element in a <intersect> component.');
+        this.warn('[MotionIO] You may only wrap one element in a <intersect> component.');
       } else if (!this.$slots["default"] || this.$slots["default"].length < 1) {
-        this.warn('[DashIntersect] You must have one child inside a <intersect> component.');
+        this.warn('[MotionIO] You must have one child inside a <intersect> component.');
         return;
       }
 
-      this.observer.observe(this.selector);
+      this.$options.observer.observe(this.selector);
     },
-    isIntersecting: function isIntersecting() {
+    isIntersecting: function isIntersecting(entries) {
       // Run Animation.
       if (this.hasEntered) {
-        this.anime.pause();
-        this.anime.reverse();
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
       }
 
-      this.anime.play(); // Run Callback.
+      this.$options.anime.play(); // Run Callback.
 
-      this.onEnter(); // Update on first entrance.
+      this.$emit('enter', entries[0]); // Update on first entrance.
 
       if (!this.hasEntered) {
         this.hasEntered = true;
@@ -235,21 +476,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
       if (this.once) {
-        this.observer.unobserve(entries[0].target);
+        this.$options.observer.unobserve(entries[0].target);
       }
     },
-    isNotIntersecting: function isNotIntersecting() {
+    isNotIntersecting: function isNotIntersecting(entries) {
       if (!this.once && this.hasEntered) {
-        this.anime.pause();
-        this.anime.reverse();
-        this.anime.play();
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+        this.$options.anime.play();
       }
 
-      this.onLeave();
+      this.$emit('leave', entries[0]);
     },
     // AnimeJS.
     initAnime: function initAnime() {
-      this.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread(_objectSpread({
+      var _this2 = this;
+
+      this.$options.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread(_objectSpread({
         targets: this.targetSelector,
         autoplay: false,
         loop: false
@@ -257,18 +500,27 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         delay: this.stagger ? this.staggerOptions : this.delay,
         duration: this.duration,
         easing: this.easing,
-        begin: this.onBegin,
-        complete: this.onComplete
+        begin: function begin() {
+          for (var _len = arguments.length, anime = new Array(_len), _key = 0; _key < _len; _key++) {
+            anime[_key] = arguments[_key];
+          }
+
+          _this2.$emit('begin', anime);
+        },
+        complete: function complete() {
+          for (var _len2 = arguments.length, anime = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            anime[_key2] = arguments[_key2];
+          }
+
+          _this2.$emit('complete', anime);
+        }
       }));
     },
     // Utility.
     warn: function warn(message) {
       if (!vue__WEBPACK_IMPORTED_MODULE_2__.default.config.silent) {
-        console.warn(message);
+        console.error(message);
       }
-    },
-    isEmpty: function isEmpty(obj) {
-      return Object.keys(obj).length === 0;
     }
   },
   render: function render() {
@@ -291,8 +543,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _motion_io_motion_io__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./motion-io/motion-io */ "./resources/js/motion-io/motion-io.js");
 /* harmony import */ var _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./motion-io/motion-text-io */ "./resources/js/motion-io/motion-text-io.js");
 /* harmony import */ var _components_HelloWorld__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/HelloWorld */ "./resources/js/components/HelloWorld.vue");
-/* harmony import */ var _components_motion_io_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/motion-io-vue */ "./resources/js/components/motion-io-vue.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _components_v_motion_io__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/v-motion-io */ "./resources/js/components/v-motion-io.js");
+/* harmony import */ var _components_v_motion_text_io__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/v-motion-text-io */ "./resources/js/components/v-motion-text-io.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 //Libraries.
  // Vanilla Components.
 
@@ -300,22 +553,24 @@ __webpack_require__.r(__webpack_exports__);
  // Vue Components.
 
 
+
  // Vue.
 
  // eslint-disable-next-line
 
-new vue__WEBPACK_IMPORTED_MODULE_5__.default({
+new vue__WEBPACK_IMPORTED_MODULE_6__.default({
   el: '#root',
   components: {
     HelloWorld: _components_HelloWorld__WEBPACK_IMPORTED_MODULE_3__.default,
-    Motion: _components_motion_io_vue__WEBPACK_IMPORTED_MODULE_4__.default
+    Motion: _components_v_motion_io__WEBPACK_IMPORTED_MODULE_4__.default,
+    MotionText: _components_v_motion_text_io__WEBPACK_IMPORTED_MODULE_5__.default
   },
   mounted: function mounted() {
     document.querySelectorAll('[data-motion-text]').forEach(function (el) {
       return new _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_2__.default(el, {
         preset: 'slideInUp',
         easing: 'easeOutBounce',
-        mask: true
+        mask: false
       });
     });
     document.querySelectorAll('[data-motion]').forEach(function (el) {
@@ -955,6 +1210,45 @@ component.options.__file = "resources/js/components/HelloWorld.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/v-motion-text-io.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/v-motion-text-io.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v-motion-text-io.vue?vue&type=template&id=1408c031& */ "./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031&");
+/* harmony import */ var _v_motion_text_io_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v-motion-text-io.vue?vue&type=script&lang=js& */ "./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _v_motion_text_io_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__.render,
+  _v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/v-motion-text-io.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/HelloWorld.vue?vue&type=script&lang=js&":
 /*!*************************************************************************!*\
   !*** ./resources/js/components/HelloWorld.vue?vue&type=script&lang=js& ***!
@@ -968,6 +1262,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HelloWorld_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HelloWorld.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HelloWorld.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HelloWorld_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_v_motion_text_io_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./v-motion-text-io.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_v_motion_text_io_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -997,6 +1307,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HelloWorld_vue_vue_type_template_id_1d11828b_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HelloWorld_vue_vue_type_template_id_1d11828b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HelloWorld.vue?vue&type=template&id=1d11828b&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HelloWorld.vue?vue&type=template&id=1d11828b&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./v-motion-text-io.vue?vue&type=template&id=1408c031& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031&");
 
 
 /***/ }),
@@ -1037,6 +1364,58 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    _vm.tag,
+    { ref: "motion", tag: "component", class: "" + _vm.className },
+    _vm._l(_vm.textGroup, function(word, index) {
+      return _c(
+        "span",
+        {
+          key: "word-" + index,
+          class: _vm.className + "__word",
+          style: _vm.addStyles(index)
+        },
+        _vm._l(word, function(letter, index) {
+          return _c(
+            "span",
+            {
+              key: "letter-" + index,
+              ref: "letter",
+              refInFor: true,
+              class: _vm.className + "__letter"
+            },
+            [_vm._v("\n         " + _vm._s(letter) + "\n      ")]
+          )
+        }),
+        0
+      )
+    }),
+    0
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
