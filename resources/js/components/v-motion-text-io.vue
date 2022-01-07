@@ -2,11 +2,9 @@
    <component
       :is="tag"
       :class="`${className}`"
-      ref="motion"
+      :aria-label="fullText"
    >
-      <!-- <span ref="text">
-         <slot></slot>
-      </span> -->
+      <span v-html="parseText" />
       <span
          :class="`${className}__word`"
          v-for="(word, index) in textGroup"
@@ -47,6 +45,10 @@ export default {
          type: String,
          required: false,
          default: 'span',
+      },
+      text: {
+         type: [ String, Object, HTMLElement ],
+         required: true,
       },
       mask: {
          type: Boolean,
@@ -116,15 +118,42 @@ export default {
    }),
 
    computed: {
+      parseText() {
+         const parser = new DOMParser()
+         var doc = parser.parseFromString( this.text, 'text/html')
+         let template = document.createElement( 'template' )
+         template.innerHTML = doc.body.innerHTML
+         let nodes = template.content.childNodes
+         console.log(nodes)
+         // const getSlotContent = ( nodes ) => {
+         //    nodes.forEach( (node) => {
+         //       if ( node.childNodes ) {
+         //          getSlotContent(node.childNodes)
+         //       } else {
+         //          return node.nodeValue
+         //       }
+         //    })
+         // }
+
+         // 1. Iterate through HTML nodes with search loop.
+         // 2. If node is text (type 3), run TextSplit function.
+         // 3. If node is element (type 1), check for children.
+         // 3a. If no children (ie. </br>), create element.
+         // 3b. If children (ie. <p>, <strong>, <a href>), create element and start new search loop.
+      },
 
       textGroup() {
-         const text = this.getSlotContent( this.$slots.default )
+         const text = '' // add text prop
          const words =  text.split(' ')
          let group = []
          words.map( (word) => {
             group = [...group, word.split('') ]
          })
          return group
+      },
+
+      fullText() {
+
       },
 
       staggerOptions() {
@@ -143,9 +172,7 @@ export default {
    mounted() {
       this.initAnime()
       this.initObserver()
-      // this.html = this.$refs.text.innerHTML
-      // console.log( this.$refs.text )
-      // this.$refs.text.remove()
+      console.log( this.parseText )
    },
 
    beforeDestroy() {
@@ -193,18 +220,7 @@ export default {
       },
 
       activateObserver() {
-         if (this.$slots.default && this.$slots.default.length > 1) {
-
-            this.warn('[MotionIO] You may only wrap one element in a <intersect> component.')
-
-         } else if (!this.$slots.default || this.$slots.default.length < 1) {
-
-            this.warn('[MotionIO] You must have one child inside a <intersect> component.')
-
-            return
-         }
-
-         this.$options.observer.observe( this.$refs.motion )
+         this.$options.observer.observe( this.$el )
       },
 
       isIntersecting( entries ) {
@@ -264,9 +280,7 @@ export default {
       // Utility.
       getSlotContent( slot ) {
          const _ = this
-         return slot.tag
-         ? slot.tag
-         : slot.map(function (node) {
+         slot.forEach( (node) => {
             return node.children
                ? _.getSlotContent(node.children)
                : node.text

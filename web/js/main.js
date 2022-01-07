@@ -90,8 +90,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -111,6 +109,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       type: String,
       required: false,
       "default": 'span'
+    },
+    text: {
+      type: [String, Object, HTMLElement],
+      required: true
     },
     mask: {
       type: Boolean,
@@ -179,8 +181,30 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
   },
   computed: {
+    parseText: function parseText() {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(this.text, 'text/html');
+      var template = document.createElement('template');
+      template.innerHTML = doc.body.innerHTML;
+      var nodes = template.content.childNodes;
+      console.log(nodes); // const getSlotContent = ( nodes ) => {
+      //    nodes.forEach( (node) => {
+      //       if ( node.childNodes ) {
+      //          getSlotContent(node.childNodes)
+      //       } else {
+      //          return node.nodeValue
+      //       }
+      //    })
+      // }
+      // 1. Iterate through HTML nodes with search loop.
+      // 2. If node is text (type 3), run TextSplit function.
+      // 3. If node is element (type 1), check for children.
+      // 3a. If no children (ie. </br>), create element.
+      // 3b. If children (ie. <p>, <strong>, <a href>), create element and start new search loop.
+    },
     textGroup: function textGroup() {
-      var text = this.getSlotContent(this.$slots["default"]);
+      var text = ''; // add text prop
+
       var words = text.split(' ');
       var group = [];
       words.map(function (word) {
@@ -188,6 +212,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
       return group;
     },
+    fullText: function fullText() {},
     staggerOptions: function staggerOptions() {
       return animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
     },
@@ -197,9 +222,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {
     this.initAnime();
-    this.initObserver(); // this.html = this.$refs.text.innerHTML
-    // console.log( this.$refs.text )
-    // this.$refs.text.remove()
+    this.initObserver();
+    console.log(this.parseText);
   },
   beforeDestroy: function beforeDestroy() {
     if (this.$options.observer) {
@@ -242,14 +266,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
     },
     activateObserver: function activateObserver() {
-      if (this.$slots["default"] && this.$slots["default"].length > 1) {
-        this.warn('[MotionIO] You may only wrap one element in a <intersect> component.');
-      } else if (!this.$slots["default"] || this.$slots["default"].length < 1) {
-        this.warn('[MotionIO] You must have one child inside a <intersect> component.');
-        return;
-      }
-
-      this.$options.observer.observe(this.$refs.motion);
+      this.$options.observer.observe(this.$el);
     },
     isIntersecting: function isIntersecting(entries) {
       // Run Animation.
@@ -304,7 +321,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     getSlotContent: function getSlotContent(slot) {
       var _ = this;
 
-      return slot.tag ? slot.tag : slot.map(function (node) {
+      slot.forEach(function (node) {
         return node.children ? _.getSlotContent(node.children) : node.text;
       }).join('');
     },
@@ -1401,31 +1418,39 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     _vm.tag,
-    { ref: "motion", tag: "component", class: "" + _vm.className },
-    _vm._l(_vm.textGroup, function(word, index) {
-      return _c(
-        "span",
-        {
-          key: "word-" + index,
-          class: _vm.className + "__word",
-          style: _vm.addStyles(index)
-        },
-        _vm._l(word, function(letter, index) {
-          return _c(
-            "span",
-            {
-              key: "letter-" + index,
-              ref: "letter",
-              refInFor: true,
-              class: _vm.className + "__letter"
-            },
-            [_vm._v("\n         " + _vm._s(letter) + "\n      ")]
-          )
-        }),
-        0
-      )
-    }),
-    0
+    {
+      tag: "component",
+      class: "" + _vm.className,
+      attrs: { "aria-label": _vm.fullText }
+    },
+    [
+      _c("span", { domProps: { innerHTML: _vm._s(_vm.parseText) } }),
+      _vm._v(" "),
+      _vm._l(_vm.textGroup, function(word, index) {
+        return _c(
+          "span",
+          {
+            key: "word-" + index,
+            class: _vm.className + "__word",
+            style: _vm.addStyles(index)
+          },
+          _vm._l(word, function(letter, index) {
+            return _c(
+              "span",
+              {
+                key: "letter-" + index,
+                ref: "letter",
+                refInFor: true,
+                class: _vm.className + "__letter"
+              },
+              [_vm._v("\n         " + _vm._s(letter) + "\n      ")]
+            )
+          }),
+          0
+        )
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
