@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import anime from 'animejs'
-import transitions from '../motion-io/transitions'
+import transitions from './transitions'
 
 export default {
    name: 'motion',
@@ -13,14 +13,19 @@ export default {
          required: false,
          default: false,
       },
-      observerOptions: {
+      observerRoot: {
          type: Object,
          required: false,
          default: () => ({
             root: null,
             rootMargin: '0px',
-            threshold: 0.5,
          })
+      },
+
+      threshold: {
+         type: [ Function, Array, Number ],
+         required: false,
+         default: 0.5,
       },
 
       // AnimeJS.
@@ -53,6 +58,11 @@ export default {
          required: false,
          default: 'fadeIn',
       },
+      svg: {
+         type: Boolean,
+         required: false,
+         default: false,
+      },
       stagger: {
          type: [ Array, Number ],
          required: false,
@@ -67,21 +77,18 @@ export default {
       hasEntered: false,
    }),
 
-   mounted() {
-      this.initAnime()
-      this.initObserver()
-   },
-
-   beforeDestroy() {
-      if ( this.$options.observer ) {
-         this.$options.observer.disconnect()
-      }
-   },
-
    computed: {
 
+      observerOptions() {
+         return {
+            root: this.observerRoot.root,
+            rootMargin: this.observerRoot.rootMargin,
+            threshold: this.threshold
+         }
+      },
+
       selector() {
-         return this.$slots.default[0].elm
+         return this.$el
       },
 
       staggerOptions() {
@@ -106,6 +113,27 @@ export default {
          return this.custom || transitions[`${this.preset}`]
       },
 
+      reduceMotion() {
+         return localStorage.getItem('reduceMotion')
+      }
+
+   },
+
+   mounted() {
+      this.initAnime()
+      this.initObserver()
+   },
+
+   beforeDestroy() {
+      if ( this.$options.observer ) {
+         this.$options.observer.disconnect()
+      }
+   },
+
+   render () {
+      return this.$scopedSlots.default()
+      ? this.$scopedSlots.default({ entered: this.hasEntered, anime: this.$options.anime, observer: this.$options.observer })[0]
+      : null
    },
 
    methods: {
@@ -129,11 +157,11 @@ export default {
       },
 
       activateObserver() {
-         if (this.$slots.default && this.$slots.default.length > 1) {
+         if (this.$scopedSlots.default() && this.$scopedSlots.default().length > 1) {
 
             this.warn('[MotionIO] You may only wrap one element in a <intersect> component.')
 
-         } else if (!this.$slots.default || this.$slots.default.length < 1) {
+         } else if (!this.$scopedSlots.default() || this.$scopedSlots.default().length < 1) {
 
             this.warn('[MotionIO] You must have one child inside a <intersect> component.')
 
@@ -181,12 +209,14 @@ export default {
 
             autoplay: false,
             loop: false,
+            strokeDashoffset: this.svg ? [anime.setDashoffset, 0] : '',
 
             ...this.transitionStyle,
 
             delay: this.stagger ? this.staggerOptions : this.delay,
-            duration: this.duration,
+            duration: this.reduceMotion == "true" ? 0 : this.duration,
             easing: this.easing,
+
 
             begin: (...anime) => {
                this.$emit('begin', anime)
@@ -203,10 +233,6 @@ export default {
             console.error( message )
          }
       },
-   },
-
-   render () {
-      return this.$slots.default ? this.$slots.default[0] : null
    },
 
 }

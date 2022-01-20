@@ -1,14 +1,16 @@
 //Libraries.
 import 'lazysizes'
 
+import jsonData from './main.json'
+
 // Vanilla Components.
 import MotionIO from './motion-io/motion-io'
 import MotionTextIO from './motion-io/motion-text-io'
 
 // Vue Components.
 import HelloWorld from './components/HelloWorld'
-import Motion from './components/v-motion-io'
-import MotionText from './components/v-motion-text-io'
+import Motion from './motion-io/v-motion-io'
+import MotionText from './motion-io/v-motion-text-io'
 
 // Vue.
 import Vue from 'vue'
@@ -16,11 +18,18 @@ import Vue from 'vue'
 // eslint-disable-next-line
 new Vue({
     el: '#root',
+
+    delimiters: ["${", "}"],
+
     components: {
         HelloWorld,
         Motion,
         MotionText,
     },
+
+    data: () => ({
+        content: jsonData,
+    }),
 
     mounted() {
 

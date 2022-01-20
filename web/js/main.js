@@ -34,532 +34,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
-/* harmony import */ var _motion_io_transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../motion-io/transitions */ "./resources/js/motion-io/transitions.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'motion-text',
-  props: {
-    applyStyles: {
-      type: Boolean,
-      required: false,
-      "default": true
-    },
-    className: {
-      type: String,
-      required: false,
-      "default": 'motionText'
-    },
-    tag: {
-      type: String,
-      required: false,
-      "default": 'span'
-    },
-    text: {
-      type: [String, Object, HTMLElement],
-      required: true
-    },
-    mask: {
-      type: Boolean,
-      required: false,
-      "default": false
-    },
-    wrapper: {
-      type: Boolean,
-      required: false,
-      "default": true
-    },
-    // IntersectionObserver.
-    once: {
-      type: Boolean,
-      required: false,
-      "default": false
-    },
-    observerOptions: {
-      type: Object,
-      required: false,
-      "default": function _default() {
-        return {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.5
-        };
-      }
-    },
-    // AnimeJS.
-    custom: {
-      type: Object,
-      required: false
-    },
-    delay: {
-      type: [Number, Function],
-      required: false,
-      "default": 0
-    },
-    duration: {
-      type: [Number, Function],
-      required: false,
-      "default": 500
-    },
-    easing: {
-      type: [String, Function],
-      required: false,
-      "default": 'linear'
-    },
-    preset: {
-      type: String,
-      required: false,
-      "default": 'fadeIn'
-    },
-    stagger: {
-      type: [Array, Number],
-      required: false,
-      "default": 100
-    }
-  },
-  anime: {},
-  observer: {},
-  data: function data() {
-    return {
-      hasEntered: false,
-      html: ''
-    };
-  },
-  computed: {
-    parseText: function parseText() {
-      var parser = new DOMParser();
-      var doc = parser.parseFromString(this.text, 'text/html');
-      var template = document.createElement('template');
-      template.innerHTML = doc.body.innerHTML;
-      var nodes = template.content.childNodes;
-      console.log(nodes); // const getSlotContent = ( nodes ) => {
-      //    nodes.forEach( (node) => {
-      //       if ( node.childNodes ) {
-      //          getSlotContent(node.childNodes)
-      //       } else {
-      //          return node.nodeValue
-      //       }
-      //    })
-      // }
-      // 1. Iterate through HTML nodes with search loop.
-      // 2. If node is text (type 3), run TextSplit function.
-      // 3. If node is element (type 1), check for children.
-      // 3a. If no children (ie. </br>), create element.
-      // 3b. If children (ie. <p>, <strong>, <a href>), create element and start new search loop.
-    },
-    textGroup: function textGroup() {
-      var text = ''; // add text prop
-
-      var words = text.split(' ');
-      var group = [];
-      words.map(function (word) {
-        group = [].concat(_toConsumableArray(group), [word.split('')]);
-      });
-      return group;
-    },
-    fullText: function fullText() {},
-    staggerOptions: function staggerOptions() {
-      return animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
-    },
-    transitionStyle: function transitionStyle() {
-      return this.custom || _motion_io_transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
-    }
-  },
-  mounted: function mounted() {
-    this.initAnime();
-    this.initObserver();
-    console.log(this.parseText);
-  },
-  beforeDestroy: function beforeDestroy() {
-    if (this.$options.observer) {
-      this.$options.observer.disconnect();
-    }
-  },
-  methods: {
-    addStyles: function addStyles(index) {
-      var styles = {};
-
-      if (this.applyStyles) {
-        styles.display = 'inline-flex';
-
-        if (index > 0) {
-          styles.marginLeft = '0.5rem';
-        }
-      }
-
-      if (this.mask) {
-        styles.clipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )';
-      }
-
-      return styles;
-    },
-    // IntersectionObserver.
-    initObserver: function initObserver() {
-      var _this = this;
-
-      this.$options.observer = new IntersectionObserver(function (entries) {
-        if (!entries[0].isIntersecting) {
-          _this.isNotIntersecting(entries);
-        } else {
-          _this.isIntersecting(entries);
-        }
-
-        _this.$emit('change', entries[0].isIntersecting);
-      }, this.observerOptions);
-      this.$nextTick(function () {
-        _this.activateObserver();
-      });
-    },
-    activateObserver: function activateObserver() {
-      this.$options.observer.observe(this.$el);
-    },
-    isIntersecting: function isIntersecting(entries) {
-      // Run Animation.
-      if (this.hasEntered) {
-        this.$options.anime.pause();
-        this.$options.anime.reverse();
-      }
-
-      this.$options.anime.play(); // Run Callback.
-
-      this.$emit('enter', entries[0]); // Update on first entrance.
-
-      if (!this.hasEntered) {
-        this.hasEntered = true;
-      } // Remove observer.
-
-
-      if (this.once) {
-        this.$options.observer.unobserve(entries[0].target);
-      }
-    },
-    isNotIntersecting: function isNotIntersecting(entries) {
-      if (!this.once && this.hasEntered) {
-        this.$options.anime.pause();
-        this.$options.anime.reverse();
-        this.$options.anime.play();
-      }
-
-      this.$emit('leave', entries[0]);
-    },
-    // AnimeJS.
-    initAnime: function initAnime() {
-      var _this2 = this;
-
-      this.$options.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread(_objectSpread({
-        targets: this.$refs.letter,
-        autoplay: false,
-        loop: false
-      }, this.transitionStyle), {}, {
-        delay: this.stagger ? this.staggerOptions : this.delay,
-        duration: this.duration,
-        easing: this.easing,
-        begin: function begin(anime) {
-          _this2.$emit('begin', anime);
-        },
-        complete: function complete(anime) {
-          _this2.$emit('complete', anime);
-        }
-      }));
-    },
-    // Utility.
-    getSlotContent: function getSlotContent(slot) {
-      var _ = this;
-
-      slot.forEach(function (node) {
-        return node.children ? _.getSlotContent(node.children) : node.text;
-      }).join('');
-    },
-    warn: function warn(message) {
-      if (!Vue.config.silent) {
-        console.error(message);
-      }
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./resources/js/components/v-motion-io.js":
-/*!************************************************!*\
-  !*** ./resources/js/components/v-motion-io.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
-/* harmony import */ var _motion_io_transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../motion-io/transitions */ "./resources/js/motion-io/transitions.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'motion',
-  props: {
-    // IntersectionObserver.
-    once: {
-      type: Boolean,
-      required: false,
-      "default": false
-    },
-    observerOptions: {
-      type: Object,
-      required: false,
-      "default": function _default() {
-        return {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.5
-        };
-      }
-    },
-    // AnimeJS.
-    children: {
-      type: [Array, Boolean],
-      required: false,
-      "default": false
-    },
-    custom: {
-      type: Object,
-      required: false
-    },
-    delay: {
-      type: [Number, Function],
-      required: false,
-      "default": 0
-    },
-    duration: {
-      type: [Number, Function],
-      required: false,
-      "default": 1000
-    },
-    easing: {
-      type: [String, Function],
-      required: false,
-      "default": 'linear'
-    },
-    preset: {
-      type: String,
-      required: false,
-      "default": 'fadeIn'
-    },
-    stagger: {
-      type: [Array, Number],
-      required: false
-    }
-  },
-  anime: {},
-  observer: {},
-  data: function data() {
-    return {
-      hasEntered: false
-    };
-  },
-  mounted: function mounted() {
-    this.initAnime();
-    this.initObserver();
-  },
-  beforeDestroy: function beforeDestroy() {
-    if (this.$options.observer) {
-      this.$options.observer.disconnect();
-    }
-  },
-  computed: {
-    selector: function selector() {
-      return this.$slots["default"][0].elm;
-    },
-    staggerOptions: function staggerOptions() {
-      return animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
-    },
-    targetSelector: function targetSelector() {
-      if (Array.isArray(this.children)) {
-        return this.selector.querySelectorAll(this.children);
-      } else if (this.children == true) {
-        return this.selector.children;
-      } else {
-        return this.selector;
-      }
-    },
-    transitionStyle: function transitionStyle() {
-      return this.custom || _motion_io_transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
-    }
-  },
-  methods: {
-    // IntersectionObserver.
-    initObserver: function initObserver() {
-      var _this = this;
-
-      this.$options.observer = new IntersectionObserver(function (entries) {
-        if (!entries[0].isIntersecting) {
-          _this.isNotIntersecting(entries);
-        } else {
-          _this.isIntersecting(entries);
-        }
-
-        _this.$emit('change', entries[0].isIntersecting);
-      }, this.observerOptions);
-      this.$nextTick(function () {
-        _this.activateObserver();
-      });
-    },
-    activateObserver: function activateObserver() {
-      if (this.$slots["default"] && this.$slots["default"].length > 1) {
-        this.warn('[MotionIO] You may only wrap one element in a <intersect> component.');
-      } else if (!this.$slots["default"] || this.$slots["default"].length < 1) {
-        this.warn('[MotionIO] You must have one child inside a <intersect> component.');
-        return;
-      }
-
-      this.$options.observer.observe(this.selector);
-    },
-    isIntersecting: function isIntersecting(entries) {
-      // Run Animation.
-      if (this.hasEntered) {
-        this.$options.anime.pause();
-        this.$options.anime.reverse();
-      }
-
-      this.$options.anime.play(); // Run Callback.
-
-      this.$emit('enter', entries[0]); // Update on first entrance.
-
-      if (!this.hasEntered) {
-        this.hasEntered = true;
-      } // Remove observer.
-
-
-      if (this.once) {
-        this.$options.observer.unobserve(entries[0].target);
-      }
-    },
-    isNotIntersecting: function isNotIntersecting(entries) {
-      if (!this.once && this.hasEntered) {
-        this.$options.anime.pause();
-        this.$options.anime.reverse();
-        this.$options.anime.play();
-      }
-
-      this.$emit('leave', entries[0]);
-    },
-    // AnimeJS.
-    initAnime: function initAnime() {
-      var _this2 = this;
-
-      this.$options.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread(_objectSpread({
-        targets: this.targetSelector,
-        autoplay: false,
-        loop: false
-      }, this.transitionStyle), {}, {
-        delay: this.stagger ? this.staggerOptions : this.delay,
-        duration: this.duration,
-        easing: this.easing,
-        begin: function begin() {
-          for (var _len = arguments.length, anime = new Array(_len), _key = 0; _key < _len; _key++) {
-            anime[_key] = arguments[_key];
-          }
-
-          _this2.$emit('begin', anime);
-        },
-        complete: function complete() {
-          for (var _len2 = arguments.length, anime = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-            anime[_key2] = arguments[_key2];
-          }
-
-          _this2.$emit('complete', anime);
-        }
-      }));
-    },
-    // Utility.
-    warn: function warn(message) {
-      if (!vue__WEBPACK_IMPORTED_MODULE_2__.default.config.silent) {
-        console.error(message);
-      }
-    }
-  },
-  render: function render() {
-    return this.$slots["default"] ? this.$slots["default"][0] : null;
-  }
-});
-
-/***/ }),
-
 /***/ "./resources/js/main.js":
 /*!******************************!*\
   !*** ./resources/js/main.js ***!
@@ -570,13 +44,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lazysizes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lazysizes */ "./node_modules/lazysizes/lazysizes.js");
 /* harmony import */ var lazysizes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lazysizes__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _motion_io_motion_io__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./motion-io/motion-io */ "./resources/js/motion-io/motion-io.js");
-/* harmony import */ var _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./motion-io/motion-text-io */ "./resources/js/motion-io/motion-text-io.js");
-/* harmony import */ var _components_HelloWorld__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/HelloWorld */ "./resources/js/components/HelloWorld.vue");
-/* harmony import */ var _components_v_motion_io__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/v-motion-io */ "./resources/js/components/v-motion-io.js");
-/* harmony import */ var _components_v_motion_text_io__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/v-motion-text-io */ "./resources/js/components/v-motion-text-io.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _main_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main.json */ "./resources/js/main.json");
+/* harmony import */ var _motion_io_motion_io__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./motion-io/motion-io */ "./resources/js/motion-io/motion-io.js");
+/* harmony import */ var _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./motion-io/motion-text-io */ "./resources/js/motion-io/motion-text-io.js");
+/* harmony import */ var _components_HelloWorld__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/HelloWorld */ "./resources/js/components/HelloWorld.vue");
+/* harmony import */ var _motion_io_v_motion_io__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./motion-io/v-motion-io */ "./resources/js/motion-io/v-motion-io.js");
+/* harmony import */ var _motion_io_v_motion_text_io__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./motion-io/v-motion-text-io */ "./resources/js/motion-io/v-motion-text-io.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 //Libraries.
+
  // Vanilla Components.
 
 
@@ -588,23 +64,29 @@ __webpack_require__.r(__webpack_exports__);
 
  // eslint-disable-next-line
 
-new vue__WEBPACK_IMPORTED_MODULE_6__.default({
+new vue__WEBPACK_IMPORTED_MODULE_7__.default({
   el: '#root',
+  delimiters: ["${", "}"],
   components: {
-    HelloWorld: _components_HelloWorld__WEBPACK_IMPORTED_MODULE_3__.default,
-    Motion: _components_v_motion_io__WEBPACK_IMPORTED_MODULE_4__.default,
-    MotionText: _components_v_motion_text_io__WEBPACK_IMPORTED_MODULE_5__.default
+    HelloWorld: _components_HelloWorld__WEBPACK_IMPORTED_MODULE_4__.default,
+    Motion: _motion_io_v_motion_io__WEBPACK_IMPORTED_MODULE_5__.default,
+    MotionText: _motion_io_v_motion_text_io__WEBPACK_IMPORTED_MODULE_6__.default
+  },
+  data: function data() {
+    return {
+      content: _main_json__WEBPACK_IMPORTED_MODULE_1__
+    };
   },
   mounted: function mounted() {
     document.querySelectorAll('[data-motion-text]').forEach(function (el) {
-      return new _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_2__.default(el, {
+      return new _motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_3__.default(el, {
         preset: 'slideInUp',
         easing: 'easeOutExpo',
         mask: false
       });
     });
     document.querySelectorAll('[data-motion]').forEach(function (el) {
-      return new _motion_io_motion_io__WEBPACK_IMPORTED_MODULE_1__.default(el, {
+      return new _motion_io_motion_io__WEBPACK_IMPORTED_MODULE_2__.default(el, {
         duration: 750,
         threshold: 0.5,
         delay: 500,
@@ -613,7 +95,7 @@ new vue__WEBPACK_IMPORTED_MODULE_6__.default({
       });
     });
     document.querySelectorAll('[data-motion-group]').forEach(function (el) {
-      return new _motion_io_motion_io__WEBPACK_IMPORTED_MODULE_1__.default(el, {
+      return new _motion_io_motion_io__WEBPACK_IMPORTED_MODULE_2__.default(el, {
         duration: 1500,
         threshold: 0.4,
         easing: 'easeOutCirc',
@@ -1129,6 +611,585 @@ var transitions = {
 
 /***/ }),
 
+/***/ "./resources/js/motion-io/v-motion-io.js":
+/*!***********************************************!*\
+  !*** ./resources/js/motion-io/v-motion-io.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
+/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transitions */ "./resources/js/motion-io/transitions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'motion',
+  props: {
+    // IntersectionObserver.
+    once: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    observerRoot: {
+      type: Object,
+      required: false,
+      "default": function _default() {
+        return {
+          root: null,
+          rootMargin: '0px'
+        };
+      }
+    },
+    threshold: {
+      type: [Function, Array, Number],
+      required: false,
+      "default": 0.5
+    },
+    // AnimeJS.
+    children: {
+      type: [Array, Boolean],
+      required: false,
+      "default": false
+    },
+    custom: {
+      type: Object,
+      required: false
+    },
+    delay: {
+      type: [Number, Function],
+      required: false,
+      "default": 0
+    },
+    duration: {
+      type: [Number, Function],
+      required: false,
+      "default": 1000
+    },
+    easing: {
+      type: [String, Function],
+      required: false,
+      "default": 'linear'
+    },
+    preset: {
+      type: String,
+      required: false,
+      "default": 'fadeIn'
+    },
+    svg: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    stagger: {
+      type: [Array, Number],
+      required: false
+    }
+  },
+  anime: {},
+  observer: {},
+  data: function data() {
+    return {
+      hasEntered: false
+    };
+  },
+  computed: {
+    observerOptions: function observerOptions() {
+      return {
+        root: this.observerRoot.root,
+        rootMargin: this.observerRoot.rootMargin,
+        threshold: this.threshold
+      };
+    },
+    selector: function selector() {
+      return this.$el;
+    },
+    staggerOptions: function staggerOptions() {
+      return animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
+    },
+    targetSelector: function targetSelector() {
+      if (Array.isArray(this.children)) {
+        return this.selector.querySelectorAll(this.children);
+      } else if (this.children == true) {
+        return this.selector.children;
+      } else {
+        return this.selector;
+      }
+    },
+    transitionStyle: function transitionStyle() {
+      return this.custom || _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+    },
+    reduceMotion: function reduceMotion() {
+      return localStorage.getItem('reduceMotion');
+    }
+  },
+  mounted: function mounted() {
+    this.initAnime();
+    this.initObserver();
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.$options.observer) {
+      this.$options.observer.disconnect();
+    }
+  },
+  render: function render() {
+    return this.$scopedSlots["default"]() ? this.$scopedSlots["default"]({
+      entered: this.hasEntered,
+      anime: this.$options.anime,
+      observer: this.$options.observer
+    })[0] : null;
+  },
+  methods: {
+    // IntersectionObserver.
+    initObserver: function initObserver() {
+      var _this = this;
+
+      this.$options.observer = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) {
+          _this.isNotIntersecting(entries);
+        } else {
+          _this.isIntersecting(entries);
+        }
+
+        _this.$emit('change', entries[0].isIntersecting);
+      }, this.observerOptions);
+      this.$nextTick(function () {
+        _this.activateObserver();
+      });
+    },
+    activateObserver: function activateObserver() {
+      if (this.$scopedSlots["default"]() && this.$scopedSlots["default"]().length > 1) {
+        this.warn('[MotionIO] You may only wrap one element in a <intersect> component.');
+      } else if (!this.$scopedSlots["default"]() || this.$scopedSlots["default"]().length < 1) {
+        this.warn('[MotionIO] You must have one child inside a <intersect> component.');
+        return;
+      }
+
+      this.$options.observer.observe(this.selector);
+    },
+    isIntersecting: function isIntersecting(entries) {
+      // Run Animation.
+      if (this.hasEntered) {
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+      }
+
+      this.$options.anime.play(); // Run Callback.
+
+      this.$emit('enter', entries[0]); // Update on first entrance.
+
+      if (!this.hasEntered) {
+        this.hasEntered = true;
+      } // Remove observer.
+
+
+      if (this.once) {
+        this.$options.observer.unobserve(entries[0].target);
+      }
+    },
+    isNotIntersecting: function isNotIntersecting(entries) {
+      if (!this.once && this.hasEntered) {
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+        this.$options.anime.play();
+      }
+
+      this.$emit('leave', entries[0]);
+    },
+    // AnimeJS.
+    initAnime: function initAnime() {
+      var _this2 = this;
+
+      this.$options.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread(_objectSpread({
+        targets: this.targetSelector,
+        autoplay: false,
+        loop: false,
+        strokeDashoffset: this.svg ? [animejs__WEBPACK_IMPORTED_MODULE_0__.default.setDashoffset, 0] : ''
+      }, this.transitionStyle), {}, {
+        delay: this.stagger ? this.staggerOptions : this.delay,
+        duration: this.reduceMotion == "true" ? 0 : this.duration,
+        easing: this.easing,
+        begin: function begin() {
+          for (var _len = arguments.length, anime = new Array(_len), _key = 0; _key < _len; _key++) {
+            anime[_key] = arguments[_key];
+          }
+
+          _this2.$emit('begin', anime);
+        },
+        complete: function complete() {
+          for (var _len2 = arguments.length, anime = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            anime[_key2] = arguments[_key2];
+          }
+
+          _this2.$emit('complete', anime);
+        }
+      }));
+    },
+    // Utility.
+    warn: function warn(message) {
+      if (!vue__WEBPACK_IMPORTED_MODULE_2__.default.config.silent) {
+        console.error(message);
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/motion-io/v-motion-text-io.js":
+/*!****************************************************!*\
+  !*** ./resources/js/motion-io/v-motion-text-io.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
+/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transitions */ "./resources/js/motion-io/transitions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'motion-text',
+  props: {
+    applyStyles: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    block: {
+      type: String,
+      required: false,
+      "default": 'motionText'
+    },
+    mask: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    tag: {
+      type: String,
+      required: false,
+      "default": 'span'
+    },
+    wordWrap: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    // IntersectionObserver.
+    once: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    observerRoot: {
+      type: Object,
+      required: false,
+      "default": function _default() {
+        return {
+          root: null,
+          rootMargin: '0px'
+        };
+      }
+    },
+    threshold: {
+      type: [Function, Array, Number],
+      required: false,
+      "default": 0.5
+    },
+    // AnimeJS.
+    custom: {
+      type: Object,
+      required: false
+    },
+    delay: {
+      type: [Number, Function],
+      required: false,
+      "default": 0
+    },
+    duration: {
+      type: [Number, Function],
+      required: false,
+      "default": 500
+    },
+    easing: {
+      type: [String, Function],
+      required: false,
+      "default": 'linear'
+    },
+    preset: {
+      type: String,
+      required: false,
+      "default": 'fadeIn'
+    },
+    stagger: {
+      type: [Array, Number],
+      required: false,
+      "default": 100
+    }
+  },
+  anime: {},
+  observer: {},
+  data: function data() {
+    return {
+      hasEntered: false,
+      html: ''
+    };
+  },
+  computed: {
+    observerOptions: function observerOptions() {
+      return {
+        root: this.observerRoot.root,
+        rootMargin: this.observerRoot.rootMargin,
+        threshold: this.threshold
+      };
+    },
+    staggerOptions: function staggerOptions() {
+      return animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
+    },
+    transitionStyle: function transitionStyle() {
+      return this.custom || _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+    },
+    reduceMotion: function reduceMotion() {
+      return localStorage.getItem('reduceMotion');
+    }
+  },
+  mounted: function mounted() {
+    this.initAnime();
+    this.initObserver();
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.$options.observer) {
+      this.$options.observer.disconnect();
+    }
+  },
+  render: function render(h) {
+    var _this = this;
+
+    return h(this.tag, {
+      "class": "".concat(this.block, "__wrapper")
+    }, this.$slots["default"].map(function (node) {
+      return _this.renderBlock(h, node);
+    }));
+  },
+  methods: {
+    renderBlock: function renderBlock(h, block) {
+      var _this2 = this;
+
+      // handle tag without text (like a <br/>)
+
+      /*
+         * If it's something visible, like an <hr/>, you could add in a nested
+         * conditional statement to check for those elements and then return
+         * the block with a `${this.block}__letter` class added so that it can
+         * still be animated. Or a different class/attribute so it can be
+         * animated differently!
+         */
+      if (!block.text && !Array.isArray(block.children)) {
+        return block;
+      } // add word span around letters if true.
+
+
+      if (block.text && this.wordWrap) {
+        return block.text.split(" ").map(function (word, index) {
+          var wordArray = word.split("").map(function (letter) {
+            if (letter !== " " && letter !== "\n") {
+              // Return character as span element
+              return h("span", {
+                "class": "".concat(_this2.block, "__letter"),
+                ref: 'letter',
+                refInFor: true
+              }, letter);
+            } else {
+              // Otherwise, return just the space/new line as is, without spans
+              return letter;
+            }
+          });
+          return h("span", {
+            "class": "".concat(_this2.block, "__word"),
+            style: _this2.buildStyles(index)
+          }, wordArray);
+        });
+      } // Convert each text into <span>
+
+
+      if (block.text) {
+        // Convert to array for easier handling
+        return block.text.split("").map(function (letter) {
+          // If it's not a space or newline (could be replaced with regex)
+          if (letter !== " " && letter !== "\n") {
+            // Return character as span element
+            return h("span", {
+              "class": "".concat(_this2.block, "__letter"),
+              ref: 'letter',
+              refInFor: true
+            }, letter);
+          } else {
+            // Otherwise, return just the space/new line as is, without spans
+            return letter;
+          }
+        });
+      } // Recursive: if element and has children, loop through each child and re-run
+
+
+      if (Array.isArray(block.children)) {
+        return h(block.tag, {
+          // This captures the class that was added in the slot, if available
+          // Emptry string if no class
+          "class": block.data && block.data.staticClass ? block.data.staticClass : ""
+        }, block.children.map(function (childBlock) {
+          return _this2.renderBlock(h, childBlock);
+        }));
+      }
+    },
+    buildStyles: function buildStyles(index) {
+      var styles = {};
+
+      if (this.applyStyles) {
+        styles.display = 'inline-flex';
+
+        if (index > 0) {
+          styles.marginLeft = '0.5rem';
+        }
+      }
+
+      if (this.mask) {
+        styles.webkitClipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )';
+        styles.clipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )';
+      }
+
+      return styles;
+    },
+    // IntersectionObserver.
+    initObserver: function initObserver() {
+      var _this3 = this;
+
+      this.$options.observer = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) {
+          _this3.isNotIntersecting(entries);
+        } else {
+          _this3.isIntersecting(entries);
+        }
+
+        _this3.$emit('change', entries[0].isIntersecting);
+      }, this.observerOptions);
+      this.$nextTick(function () {
+        _this3.activateObserver();
+      });
+    },
+    activateObserver: function activateObserver() {
+      this.$options.observer.observe(this.$el);
+    },
+    isIntersecting: function isIntersecting(entries) {
+      var _this4 = this;
+
+      // Run Animation.
+      if (this.hasEntered) {
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+      }
+
+      setTimeout(function () {
+        _this4.$options.anime.play();
+      }, this.delay); // Run Callback.
+
+      this.$emit('enter', entries[0]); // Update on first entrance.
+
+      if (!this.hasEntered) {
+        this.hasEntered = true;
+      } // Remove observer.
+
+
+      if (this.once) {
+        this.$options.observer.unobserve(entries[0].target);
+      }
+    },
+    isNotIntersecting: function isNotIntersecting(entries) {
+      if (!this.once && this.hasEntered) {
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+        this.$options.anime.play();
+      }
+
+      this.$emit('leave', entries[0]);
+    },
+    // AnimeJS.
+    initAnime: function initAnime() {
+      var _this5 = this;
+
+      this.$options.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread(_objectSpread({
+        targets: this.$refs.letter,
+        autoplay: false,
+        loop: false
+      }, this.transitionStyle), {}, {
+        delay: this.stagger ? this.staggerOptions : '',
+        duration: this.reduceMotion == "true" ? 0 : this.duration,
+        easing: this.easing,
+        begin: function begin(anime) {
+          _this5.$emit('begin', anime);
+        },
+        complete: function complete(anime) {
+          _this5.$emit('complete', anime);
+        }
+      }));
+    },
+    warn: function warn(message) {
+      if (!vue__WEBPACK_IMPORTED_MODULE_2__.default.config.silent) {
+        console.error(message);
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HelloWorld.vue?vue&type=style&index=0&id=1d11828b&scoped=true&lang=css&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HelloWorld.vue?vue&type=style&index=0&id=1d11828b&scoped=true&lang=css& ***!
@@ -1240,45 +1301,6 @@ component.options.__file = "resources/js/components/HelloWorld.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/v-motion-text-io.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/v-motion-text-io.vue ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v-motion-text-io.vue?vue&type=template&id=1408c031& */ "./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031&");
-/* harmony import */ var _v_motion_text_io_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v-motion-text-io.vue?vue&type=script&lang=js& */ "./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
-  _v_motion_text_io_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__.render,
-  _v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/v-motion-text-io.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
 /***/ "./resources/js/components/HelloWorld.vue?vue&type=script&lang=js&":
 /*!*************************************************************************!*\
   !*** ./resources/js/components/HelloWorld.vue?vue&type=script&lang=js& ***!
@@ -1292,22 +1314,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HelloWorld_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HelloWorld.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HelloWorld.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HelloWorld_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
-
-/***/ }),
-
-/***/ "./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_v_motion_text_io_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./v-motion-text-io.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_v_motion_text_io_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -1337,23 +1343,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HelloWorld_vue_vue_type_template_id_1d11828b_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HelloWorld_vue_vue_type_template_id_1d11828b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HelloWorld.vue?vue&type=template&id=1d11828b&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HelloWorld.vue?vue&type=template&id=1d11828b&scoped=true&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031& ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_motion_text_io_vue_vue_type_template_id_1408c031___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./v-motion-text-io.vue?vue&type=template&id=1408c031& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031&");
 
 
 /***/ }),
@@ -1400,63 +1389,14 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031&":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-motion-text-io.vue?vue&type=template&id=1408c031& ***!
-  \****************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./resources/js/main.json":
+/*!********************************!*\
+  !*** ./resources/js/main.json ***!
+  \********************************/
+/***/ ((module) => {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    _vm.tag,
-    {
-      tag: "component",
-      class: "" + _vm.className,
-      attrs: { "aria-label": _vm.fullText }
-    },
-    [
-      _c("span", { domProps: { innerHTML: _vm._s(_vm.parseText) } }),
-      _vm._v(" "),
-      _vm._l(_vm.textGroup, function(word, index) {
-        return _c(
-          "span",
-          {
-            key: "word-" + index,
-            class: _vm.className + "__word",
-            style: _vm.addStyles(index)
-          },
-          _vm._l(word, function(letter, index) {
-            return _c(
-              "span",
-              {
-                key: "letter-" + index,
-                ref: "letter",
-                refInFor: true,
-                class: _vm.className + "__letter"
-              },
-              [_vm._v("\n         " + _vm._s(letter) + "\n      ")]
-            )
-          }),
-          0
-        )
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
+module.exports = JSON.parse('{"pageTitle":"<div class=\'titleScreen\'><strong><div class=\'titleText\'>Lean Into Learning</div></strong></div><div class=\'titleScreen\'><div class=\'titleText\'>2021 Annual</div></div><div class=\'titleScreen\'><div class=\'titleText\'>Learning Report</div></div>","welcome":"<p>Welcome to our </br>page!</p>","reportUrl":"","video":{"sectionTitle":"Learning in a post-pandemic world","text":["2021 has spurred a multitude of challenges for all businesses, including a permanent shift to remote and hybrid work, substantial portions of the labor force being swept up by the Great Resignation, and a widening gap in technical skills and knowledge.","Businesses around the world needed to ease out of crisis mode to create workforces equipped with the skills for tomorrow while retaining the most qualified talent. It became essential to build cultures of learning focused on employee needs, as well as training programs designed for the hybrid workforce. As we start to plan for the modern workforce, it becomes our job to take the findings from last year and apply them to our digital learning strategies.","<strong>The Lean into Learning report was designed to help leaders and organizations gain a deeper understanding of the evolving digital learning landscape, and how it will affect the workforce for years to come.</strong>","Download the report for full insights illustrating organizational, social, and cultural changes in the workforce today, and to learn how your organization can better prepare for the future of work."],"videoUrl":"https://vimeo.com/489056864"}}');
 
 /***/ })
 

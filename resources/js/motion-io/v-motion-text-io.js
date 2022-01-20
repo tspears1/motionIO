@@ -1,32 +1,6 @@
-// // DEPRECATED ---------->
-<template>
-   <component
-      :is="tag"
-      :class="`${className}`"
-      :aria-label="fullText"
-   >
-      <span v-html="parseText" />
-      <span
-         :class="`${className}__word`"
-         v-for="(word, index) in textGroup"
-         :key="`word-${index}`"
-         :style="addStyles( index )"
-      >
-         <span
-            :class="`${className}__letter`"
-            ref="letter"
-            v-for="(letter, index) in word"
-            :key="`letter-${index}`"
-         >
-            {{ letter }}
-         </span>
-      </span>
-   </component>
-</template>
-
-<script>
+import Vue from 'vue'
 import anime from 'animejs'
-import transitions from '../motion-io/transitions'
+import transitions from './transitions'
 
 export default {
    name: 'motion-text',
@@ -37,29 +11,25 @@ export default {
          required: false,
          default: true,
       },
-      className: {
+      block: {
          type: String,
          required: false,
          default: 'motionText',
-      },
-      tag: {
-         type: String,
-         required: false,
-         default: 'span',
-      },
-      text: {
-         type: [ String, Object, HTMLElement ],
-         required: true,
       },
       mask: {
          type: Boolean,
          required: false,
          default: false,
       },
-      wrapper: {
+      tag: {
+         type: String,
+         required: false,
+         default: 'span',
+      },
+      wordWrap: {
          type: Boolean,
          required: false,
-         default: true,
+         default: false,
       },
 
       // IntersectionObserver.
@@ -68,14 +38,19 @@ export default {
          required: false,
          default: false,
       },
-      observerOptions: {
+      observerRoot: {
          type: Object,
          required: false,
          default: () => ({
             root: null,
             rootMargin: '0px',
-            threshold: 0.5,
          })
+      },
+
+      threshold: {
+         type: [ Function, Array, Number ],
+         required: false,
+         default: 0.5,
       },
 
       // AnimeJS.
@@ -119,42 +94,13 @@ export default {
    }),
 
    computed: {
-      parseText() {
-         const parser = new DOMParser()
-         var doc = parser.parseFromString( this.text, 'text/html')
-         let template = document.createElement( 'template' )
-         template.innerHTML = doc.body.innerHTML
-         let nodes = template.content.childNodes
-         console.log(nodes)
-         // const getSlotContent = ( nodes ) => {
-         //    nodes.forEach( (node) => {
-         //       if ( node.childNodes ) {
-         //          getSlotContent(node.childNodes)
-         //       } else {
-         //          return node.nodeValue
-         //       }
-         //    })
-         // }
 
-         // 1. Iterate through HTML nodes with search loop.
-         // 2. If node is text (type 3), run TextSplit function.
-         // 3. If node is element (type 1), check for children.
-         // 3a. If no children (ie. </br>), create element.
-         // 3b. If children (ie. <p>, <strong>, <a href>), create element and start new search loop.
-      },
-
-      textGroup() {
-         const text = '' // add text prop
-         const words =  text.split(' ')
-         let group = []
-         words.map( (word) => {
-            group = [...group, word.split('') ]
-         })
-         return group
-      },
-
-      fullText() {
-
+      observerOptions() {
+         return {
+            root: this.observerRoot.root,
+            rootMargin: this.observerRoot.rootMargin,
+            threshold: this.threshold
+         }
       },
 
       staggerOptions() {
@@ -168,12 +114,15 @@ export default {
       transitionStyle() {
          return this.custom || transitions[`${this.preset}`]
       },
+
+      reduceMotion() {
+         return localStorage.getItem('reduceMotion')
+      }
    },
 
    mounted() {
       this.initAnime()
       this.initObserver()
-      console.log( this.parseText )
    },
 
    beforeDestroy() {
@@ -182,9 +131,80 @@ export default {
       }
    },
 
+   render: function (h) {
+         return h(
+            this.tag,
+            {
+               class: `${this.block}__wrapper`,
+            },
+            this.$slots.default.map( (node) => this.renderBlock(h, node) )
+         )
+   },
+
    methods: {
 
-      addStyles( index ) {
+      renderBlock(h, block) {
+         // handle tag without text (like a <br/>)
+         /*
+            * If it's something visible, like an <hr/>, you could add in a nested
+            * conditional statement to check for those elements and then return
+            * the block with a `${this.block}__letter` class added so that it can
+            * still be animated. Or a different class/attribute so it can be
+            * animated differently!
+            */
+         if (!block.text && !Array.isArray(block.children)) {
+            return block;
+         }
+
+         // add word span around letters if true.
+         if ( block.text && this.wordWrap ) {
+            return block.text.split(" ").map( (word, index) => {
+               const wordArray = word.split("").map( (letter) => {
+                  if (letter !== " " && letter !== "\n") {
+                     // Return character as span element
+                     return h("span", { class: `${this.block}__letter`, ref: 'letter', refInFor: true, }, letter);
+                  } else {
+                     // Otherwise, return just the space/new line as is, without spans
+                     return letter;
+                  }
+               })
+               return h("span", { class: `${this.block}__word`, style: this.buildStyles(index) }, wordArray )
+            })
+         }
+
+         // Convert each text into <span>
+         if (block.text) {
+            // Convert to array for easier handling
+            return block.text.split("").map( (letter) => {
+               // If it's not a space or newline (could be replaced with regex)
+               if (letter !== " " && letter !== "\n") {
+                  // Return character as span element
+                  return h("span", { class: `${this.block}__letter`, ref: 'letter', refInFor: true, }, letter);
+               } else {
+                  // Otherwise, return just the space/new line as is, without spans
+                  return letter;
+               }
+            });
+         }
+
+         // Recursive: if element and has children, loop through each child and re-run
+         if (Array.isArray(block.children)) {
+            return h(
+               block.tag,
+               {
+                  // This captures the class that was added in the slot, if available
+                  // Emptry string if no class
+                  class:
+                     block.data && block.data.staticClass
+                        ? block.data.staticClass
+                        : "",
+               },
+               block.children.map((childBlock) => this.renderBlock(h, childBlock))
+            )
+         }
+      },
+
+      buildStyles( index ) {
          const styles = {}
 
          if ( this.applyStyles ) {
@@ -196,6 +216,7 @@ export default {
          }
 
          if ( this.mask ) {
+            styles.webkitClipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )'
             styles.clipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )'
          }
 
@@ -230,7 +251,9 @@ export default {
             this.$options.anime.pause()
             this.$options.anime.reverse()
          }
-         this.$options.anime.play()
+         setTimeout(() => {
+            this.$options.anime.play()
+         }, this.delay );
 
          // Run Callback.
          this.$emit('enter', entries[0])
@@ -265,8 +288,8 @@ export default {
 
             ...this.transitionStyle,
 
-            delay: this.stagger ? this.staggerOptions : this.delay,
-            duration: this.duration,
+            delay: this.stagger ? this.staggerOptions : '',
+            duration: this.reduceMotion == "true" ? 0 : this.duration,
             easing: this.easing,
 
             begin: ( anime ) => {
@@ -278,16 +301,6 @@ export default {
          })
       },
 
-      // Utility.
-      getSlotContent( slot ) {
-         const _ = this
-         slot.forEach( (node) => {
-            return node.children
-               ? _.getSlotContent(node.children)
-               : node.text
-         }).join('')
-      },
-
       warn( message ) {
          if ( !Vue.config.silent ) {
             console.error( message )
@@ -295,4 +308,3 @@ export default {
       },
    }
 }
-</script>
