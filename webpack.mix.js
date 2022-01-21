@@ -9,7 +9,7 @@ require('laravel-mix-purgecss')
 // recommended. The mix-manifest.json file will be created within this path.
 
 mix.setResourceRoot(process.env.RESOURCE_ROOT || '/')
-mix.setPublicPath('web')
+mix.setPublicPath('example/web')
 
 // Mix Options
 
@@ -64,13 +64,11 @@ mix.autoload({
 
 // Asset Config
 
-mix.copyDirectory('resources/media', 'web/media')
-
-mix.js('resources/js/main.js', 'js').vue()
-mix.sass('resources/styles/main.scss', 'css', {
+mix.js('example/main.js', 'js').vue()
+mix.sass('example/styles/main.scss', 'css', {
     sassOptions: {
         includePaths: [
-            'resources/styles',
+            'example/styles',
         ],
     },
 })
