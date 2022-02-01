@@ -9,14 +9,14 @@ $columns: 12;
 ///
 /// Default font stack, size, line-height
 ///
-$body-font-stack: Arial, sans-serif;
+$body-font-stack: 'dm', Arial, sans-serif;
 $body-font-size: 1rem;
 $body-line-height: 1.5;
 
 ///
 /// Heading font stack, line-height
 ///
-$heading-font-stack: system-ui, sans-serif;
+$heading-font-stack: 'dm', system-ui, sans-serif;
 $heading-line-height: 1;
 
 ///
@@ -85,6 +85,10 @@ $color-modifiers: (
     info: $info,
     disabled: $disabled,
 );
+
+$motion-blue: #00cfff;
+$motion-med: #0e5c80;
+$motion-dark: #111827;
 
 
 ///

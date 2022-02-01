@@ -73,6 +73,10 @@ export default {
          required: false,
          default: 'linear',
       },
+      origin: {
+         type: String,
+         required: false,
+      },
       preset: {
          type: String,
          required: false,
@@ -284,6 +288,9 @@ export default {
 
       // AnimeJS.
       initAnime() {
+         if ( this.origin ) {
+            anime.set( this.$refs.letter, { transformOrigin: this.origin })
+         }
          this.$options.anime = anime({
             targets: this.$refs.letter,
 

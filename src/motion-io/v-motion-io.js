@@ -53,6 +53,10 @@ export default {
          required: false,
          default: 'linear',
       },
+      origin: {
+         type: String,
+         required: false,
+      },
       preset: {
          type: String,
          required: false,
@@ -173,7 +177,7 @@ export default {
 
       isIntersecting( entries ) {
          // Run Animation.
-         if ( this.hasEntered ) {
+         if ( this.hasEntered === true ) {
             this.$options.anime.pause()
             this.$options.anime.reverse()
          }
@@ -185,6 +189,7 @@ export default {
          // Update on first entrance.
          if ( ! this.hasEntered ) {
             this.hasEntered = true
+            return
          }
 
          // Remove observer.
@@ -204,6 +209,9 @@ export default {
 
       // AnimeJS.
       initAnime() {
+         if ( this.origin ) {
+            anime.set( this.targetSelector, { transformOrigin: this.origin })
+         }
          this.$options.anime = anime({
             targets: this.targetSelector,
 

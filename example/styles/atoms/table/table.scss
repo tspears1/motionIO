@@ -5,8 +5,10 @@
 @mixin table {
     border-collapse: collapse;
     border-spacing: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
     width: 100%;
+    border-bottom: 30px solid $motion-dark;
 
     &__container {
         border-collapse: collapse;
@@ -28,19 +30,19 @@
     }
 
     th {
-        background-color: $primary;
+        background-color: $motion-dark;
         color: $white;
         white-space: nowrap;
     }
 
     tr {
-        border-bottom: 1px solid $border;
+        border-bottom: 1px solid $motion-med;
         transition: background-color $fade-easing $fast;
     }
 
 
     tr:hover {
-        background-color: $blue-100;
+        background-color: lighten($motion-blue, 40%);;
     }
 
     &.-scrollable {
