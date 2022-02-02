@@ -8,8 +8,6 @@ MotionIO is a set of Vue components that use [Intersection Observer](https://dev
 
 `Intersect` is purely the IntersectionObserver component, which emits events for entering and exiting that can be used to trigger callbacks. Best for css based animations or using a different animation library with.
 
-[View Repo](https://github.com/tspears1/motionIO)
-
 
 ## Props - Motion ( Vue )
 
