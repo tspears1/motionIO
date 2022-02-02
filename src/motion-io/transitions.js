@@ -61,6 +61,27 @@ const transitions = {
       clipPath: [ 'inset(110% -10% -10% -10%)', 'inset( -10% -10% -10% -10%']
    },
 
+   bounceInDown: {
+      easing: 'easeOutBounce',
+      opacity: [0, 1],
+      translateY: [ '20vh', 0 ]
+   },
+   bounceInLeft: {
+      easing: 'easeOutBounce',
+      opacity: [0, 1],
+      translateX: [ '-20vw', 0 ]
+   },
+   bounceInRight: {
+      easing: 'easeOutBounce',
+      opacity: [0, 1],
+      translateX: [ '20vw', 0 ]
+   },
+   bounceInUp: {
+      easing: 'easeOutBounce',
+      opacity: [0, 1],
+      translateY: [ '-20vh', 0 ]
+   },
+
    zoomIn: {
       opacity: [0, 1],
       scaleX: [0, 1],

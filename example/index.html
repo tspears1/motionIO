@@ -9,7 +9,7 @@
    <body>
       <div id="root">
          <div class="backToTop">
-            <a href="#menu">
+            <a href="#transitions">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.6 75">
                   <polygon points="43.3 0 0 75 86.6 75 43.3 0" fill="currentColor"/>
                </svg>
@@ -33,12 +33,16 @@
          </div>
          <div class="linkBox">
             <div class="intro">
-               <h2><motion-text preset="textRevealInDown" :once="true">About Motion</motion-text></h2>
+               <h2><motion-text preset="textRevealInDown">About Motion</motion-text></h2>
                <div class="container">
-                  <p> MotionIO is a Vue component that uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" target="_blank">Intersection Observer</a> and <a href="https://animejs.com/" target="_blank">Anime.js</a> to create simple transitional animations on scroll as an element or group of elements enter or exit the viewport.</p>
+                  <p> MotionIO is a set of Vue components that use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" target="_blank">Intersection Observer</a> and <a href="https://animejs.com/" target="_blank">Anime.js</a> to create simple transitional animations on scroll as an element or group of elements enter or exit the viewport.</p>
+                  <p><code>Motion</code> is the base component which can be applied to a single element with or without children, however it must only have one parent element.</p>
+                  <p><code>MotionText</code> will break up a string of text and animate each character separately. It will respect any html tags wrapped around the text.</p>
+                  <p><code>Intersect</code> is purely the IntersectionObserver component, which emits events for entering and exiting that can be used to trigger callbacks. Best for css based animations or using a different animation library with.</p>
+                  <p style="text-align: center;"><a href="https://github.com/tspears1/motionIO" target="_blank">View Repo</a></p>
                </div>
             </div>
-            <h2><motion-text preset="textRevealInDown" :once="true">Motion API</motion-text></h2>
+            <h2><motion-text preset="textRevealInDown">Motion API</motion-text></h2>
             <div class="container">
                <table>
                   <thead>
@@ -99,6 +103,12 @@
                         <td align="left"><code>'linear'</code></td>
                      </tr>
                      <tr>
+                        <td align="left"><code>origin</code></td>
+                        <td align="left"><code>String</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>'center center'</code></td>
+                     </tr>
+                     <tr>
                         <td align="left"><code>preset</code></td>
                         <td align="left"><code>String</code></td>
                         <td align="left"><code>false</code></td>
@@ -120,29 +130,194 @@
                </table>
             </div>
 
-            <h2 id="menu">
-               <motion-text preset="textRevealInDown" :once="true">
-                  Motion Presets
-               </motion-text>
-               </h2>
+            <h2><motion-text preset="textRevealInDown">MotionText API</motion-text></h2>
             <div class="container">
-               <div class="linkBox__links">
-                  <a href="#fadeIn">fadeIn</a>
-                  <a href="#slideInLeft">slideInLeft</a>
-                  <a href="#slideInUp">slideInUp</a>
-                  <a href="#slideInRight">slideInRight</a>
-                  <a href="#slideInDown">slideInDown</a>
-                  <a href="#zoomIn">zoomIn</a>
-                  <a href="#zoomOut">zoomOut</a>
-                  <a href="#flipX">flipX</a>
-                  <a href="#flipY">flipY</a>
-                  <a href="#rotateLeft">rotateLeft</a>
-                  <a href="#rotateRight">rotateRight</a>
-                  <a href="#revealInLeft">revealInLeft</a>
-                  <a href="#revealInUp">revealInUp</a>
-                  <a href="#revealInRight">revealInRight</a>
-                  <a href="#revealInDown">revealInDown</a>
-                  <a href="#children">children / stagger</a>
+               <table>
+                  <thead>
+                     <tr>
+                     <th align="left">Prop</th>
+                     <th align="left">Type</th>
+                     <th align="left">Required</th>
+                     <th align="left">Default</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td align="left"><code>applyStyles</code></td>
+                        <td align="left"><code>Boolean</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>true</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>block</code></td>
+                        <td align="left"><code>String</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>'motionText'</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>mask</code></td>
+                        <td align="left"><code>Boolean</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>false</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>tag</code></td>
+                        <td align="left"><code>String</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>'span'</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>wordWrap</code></td>
+                        <td align="left"><code>Boolean</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>true</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>once</code></td>
+                        <td align="left"><code>Boolean</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>false</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>observerRoot</code></td>
+                        <td align="left"><code>Object</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>{ root: null, rootMargin: '0px' }</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>threshold</code></td>
+                        <td align="left"><code>Function / Array / Number </code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>0.5</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>custom</code></td>
+                        <td align="left"><code>Object</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>null</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>delay</code></td>
+                        <td align="left"><code>Number / Function</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>0</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>duration</code></td>
+                        <td align="left"><code>Number / Function</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>500</code> (ms)</td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>easing</code></td>
+                        <td align="left"><code>String / Function</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>'linear'</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>origin</code></td>
+                        <td align="left"><code>String</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>'center center'</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>preset</code></td>
+                        <td align="left"><code>String</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>'fadeIn'</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>stagger</code></td>
+                        <td align="left"><code>Array / Number</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>100</code></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+
+            <h2><motion-text preset="textRevealInDown">Intersect API</motion-text></h2>
+            <div class="container">
+               <table>
+                  <thead>
+                     <tr>
+                     <th align="left">Prop</th>
+                     <th align="left">Type</th>
+                     <th align="left">Required</th>
+                     <th align="left">Default</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td align="left"><code>once</code></td>
+                        <td align="left"><code>Boolean</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>false</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>observerRoot</code></td>
+                        <td align="left"><code>Object</code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>{ root: null, rootMargin: '0px' }</code></td>
+                     </tr>
+                     <tr>
+                        <td align="left"><code>threshold</code></td>
+                        <td align="left"><code>Function / Array / Number </code></td>
+                        <td align="left"><code>false</code></td>
+                        <td align="left"><code>0.5</code></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+
+            <div class="container">
+               <div id="transitions" class="transitions">
+                  <h2>
+                     <motion-text preset="textRevealInDown">
+                        Motion Presets
+                     </motion-text>
+                  </h2>
+                  <div class="linkBox__links">
+                     <a href="#fadeIn">fadeIn</a>
+                     <a href="#slideInLeft">slideInLeft</a>
+                     <a href="#slideInUp">slideInUp</a>
+                     <a href="#slideInRight">slideInRight</a>
+                     <a href="#bounceInDown">bounceInDown</a>
+                     <a href="#bounceInLeft">bounceInLeft</a>
+                     <a href="#bounceInUp">bounceInUp</a>
+                     <a href="#bounceInRight">bounceInRight</a>
+                     <a href="#bounceInDown">bounceInDown</a>
+                     <a href="#zoomIn">zoomIn</a>
+                     <a href="#zoomOut">zoomOut</a>
+                     <a href="#flipX">flipX</a>
+                     <a href="#flipY">flipY</a>
+                     <a href="#rotateLeft">rotateLeft</a>
+                     <a href="#rotateRight">rotateRight</a>
+                     <a href="#revealInLeft">revealInLeft</a>
+                     <a href="#revealInUp">revealInUp</a>
+                     <a href="#revealInRight">revealInRight</a>
+                     <a href="#revealInDown">revealInDown</a>
+                     <a href="#children">children / stagger</a>
+                     <a href="#text-fadeIn">text fadeIn</a>
+                     <a href="#text-slideInLeft">text slideInLeft</a>
+                     <a href="#text-slideInUp">text slideInUp</a>
+                     <a href="#text-slideInRight">text slideInRight</a>
+                     <a href="#text-bounceInDown">text bounceInDown</a>
+                     <a href="#text-bounceInLeft">text bounceInLeft</a>
+                     <a href="#text-bounceInUp">text bounceInUp</a>
+                     <a href="#text-bounceInRight">text bounceInRight</a>
+                     <a href="#text-bounceInDown">text bounceInDown</a>
+                     <a href="#text-zoomIn">text zoomIn</a>
+                     <a href="#text-zoomOut">text zoomOut</a>
+                     <a href="#text-flipX">text flipX</a>
+                     <a href="#text-flipY">text flipY</a>
+                     <a href="#text-rotateLeft">text rotateLeft</a>
+                     <a href="#text-rotateRight">text rotateRight</a>
+                     <a href="#text-revealInLeft">textRevealInLeft</a>
+                     <a href="#text-revealInUp">textRevealInUp</a>
+                     <a href="#text-revealInRight">textRevealInRight</a>
+                     <a href="#text-revealInDown">textRevealInDown</a>
+                  </div>
                </div>
             </div>
 
@@ -196,6 +371,50 @@
             <h3 class="subtitle">preset="slideInDown"</h3>
             <div class="sub-container">
                <motion preset="slideInDown" :threshold="1">
+               <div class="box">
+                  <img src="https://source.unsplash.com/random/300×300" />
+               </div>
+               </motion>
+            </div>
+         </section>
+
+         <section id="bounceInLeft">
+            <h3 class="subtitle">preset="bounceInLeft"</h3>
+            <div class="sub-container">
+               <motion easing="easeOutBounce" preset="bounceInLeft">
+               <div class="box">
+                  <img src="https://source.unsplash.com/random/300×300" />
+               </div>
+               </motion>
+            </div>
+         </section>
+
+         <section id="bounceInUp">
+            <h3 class="subtitle">preset="bounceInUp"</h3>
+            <div class="sub-container">
+               <motion easing="easeOutBounce" preset="bounceInUp">
+               <div class="box">
+                  <img src="https://source.unsplash.com/random/300×300" />
+               </div>
+               </motion>
+            </div>
+         </section>
+
+         <section id="bounceInRight">
+            <h3 class="subtitle">preset="bounceInRight"</h3>
+            <div class="sub-container">
+               <motion easing="easeOutBounce" preset="bounceInRight">
+               <div class="box">
+                  <img src="https://source.unsplash.com/random/300×300" />
+               </div>
+               </motion>
+            </div>
+         </section>
+
+         <section id="bounceInDown">
+            <h3 class="subtitle">preset="bounceInDown"</h3>
+            <div class="sub-container">
+               <motion easing="easeOutBounce" preset="bounceInDown" :threshold="1">
                <div class="box">
                   <img src="https://source.unsplash.com/random/300×300" />
                </div>
@@ -270,9 +489,9 @@
          </section>
 
          <section id="revealInLeft">
-            <h3 class="subtitle">preset="revealInLeft"<span>[ bug in chrome/brave - will be fixed soon ]</span></h3>
+            <h3 class="subtitle">preset="revealInLeft"</h3>
             <div class="sub-container">
-               <motion :once="true" preset="textRevealInLeft">
+               <motion :once="true" preset="revealInLeft">
                   <div class="box">
                      <img src="https://source.unsplash.com/random/300×300" />
                   </div>
@@ -281,7 +500,7 @@
          </section>
 
          <section id="revealInUp">
-            <h3 class="subtitle">preset="revealInUp"<span>[ bug in chrome/brave - will be fixed soon ]</span></h3>
+            <h3 class="subtitle">preset="revealInUp"</h3>
             <div class="sub-container">
                <motion preset="revealInUp">
                <div class="box">
@@ -292,7 +511,7 @@
          </section>
 
          <section id="revealInRight">
-            <h3 class="subtitle">preset="revealInRight"<span>[ bug in chrome/brave - will be fixed soon ]</span></h3>
+            <h3 class="subtitle">preset="revealInRight"</h3>
             <div class="sub-container">
                <motion preset="revealInRight">
                <div class="box">
@@ -303,7 +522,7 @@
          </section>
 
          <section id="revealInDown">
-            <h3 class="subtitle">preset="revealInDown"<span>[ bug in chrome/brave - will be fixed soon ]</span></h3>
+            <h3 class="subtitle">preset="revealInDown"</h3>
             <div class="sub-container">
                <motion preset="revealInDown">
                <div class="box">
@@ -332,9 +551,175 @@
                </motion>
             </div>
          </section>
-         <section>
+
+         <section id="text-fadeIn">
+            <h3 class="subtitle">preset="fadeIn"</h3>
             <div class="sub-container">
-               <motion-text preset="revealInRight">Welcome to my page!</motion-text>
+               <motion-text>
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-slideInLeft">
+            <h3 class="subtitle">preset="slideInLeft"</h3>
+            <div class="sub-container">
+               <motion-text preset="slideInLeft">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-slideInUp">
+            <h3 class="subtitle">preset="slideInUp"</h3>
+            <div class="sub-container">
+               <motion-text preset="slideInUp">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-slideInRight">
+            <h3 class="subtitle">preset="slideInRight"</h3>
+            <div class="sub-container">
+               <motion-text preset="slideInRight">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-slideInDown">
+            <h3 class="subtitle">preset="slideInDown"</h3>
+            <div class="sub-container">
+               <motion-text preset="slideInDown" :threshold="1">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-bounceInLeft">
+            <h3 class="subtitle">preset="bounceInLeft"</h3>
+            <div class="sub-container">
+               <motion-text easing="easeOutBounce" preset="bounceInLeft">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-bounceInUp">
+            <h3 class="subtitle">preset="bounceInUp"</h3>
+            <div class="sub-container">
+               <motion-text easing="easeOutBounce" preset="bounceInUp">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-bounceInRight">
+            <h3 class="subtitle">preset="bounceInRight"</h3>
+            <div class="sub-container">
+               <motion-text easing="easeOutBounce" preset="bounceInRight">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-bounceInDown">
+            <h3 class="subtitle">preset="bounceInDown"</h3>
+            <div class="sub-container">
+               <motion-text easing="easeOutBounce" preset="bounceInDown" :threshold="1">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-zoomIn">
+            <h3 class="subtitle">preset="zoomIn"</h3>
+            <div class="sub-container">
+               <motion-text :once="false" preset="zoomIn" :threshold="0.5">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-zoomOut">
+            <h3 class="subtitle">preset="zoomOut"</h3>
+            <div class="sub-container">
+               <motion-text :once="false" preset="zoomOut" :threshold="0.5">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-flipX">
+            <h3 class="subtitle">preset="flipX"</h3>
+            <div class="sub-container">
+               <motion-text :once="false" preset="flipX" :threshold="0.5">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-flipY">
+            <h3 class="subtitle">preset="flipY"</h3>
+            <div class="sub-container">
+               <motion-text :once="false" preset="flipY" :threshold="0.5">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-rotateLeft">
+            <h3 class="subtitle">preset="rotateLeft"</h3>
+            <div class="sub-container">
+               <motion-text :once="false" preset="rotateLeft" :threshold="0.5">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-rotateRight">
+            <h3 class="subtitle">preset="rotateRight"</h3>
+            <div class="sub-container">
+               <motion-text :once="false" preset="rotateRight" :threshold="0.5">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-textRevealInLeft">
+            <h3 class="subtitle">preset="textRevealInLeft"</h3>
+            <div class="sub-container">
+               <motion-text :once="true" preset="textRevealInLeft">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-textRevealInUp">
+            <h3 class="subtitle">preset="textRevealInUp"</h3>
+            <div class="sub-container">
+               <motion-text preset="textRevealInUp">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-textRevealInRight">
+            <h3 class="subtitle">preset="textRevealInRight"</h3>
+            <div class="sub-container">
+               <motion-text preset="textRevealInRight">
+                  <p>MotionText Example Text</p>
+               </motion-text>
+            </div>
+         </section>
+
+         <section id="text-textRevealInDown">
+            <h3 class="subtitle">preset="textRevealInDown"</h3>
+            <div class="sub-container">
+               <motion-text preset="textRevealInDown">
+                  <p>MotionText Example Text</p>
+               </motion-text>
             </div>
          </section>
       </div>

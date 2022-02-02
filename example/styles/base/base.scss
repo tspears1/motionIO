@@ -217,6 +217,7 @@ h3.subtitle {
         grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
         place-content: center;
         place-items: center;
+        width: 100%;
 
         a {
             transition: background 300ms ease-in-out;
@@ -224,6 +225,7 @@ h3.subtitle {
             background-position: left bottom;
             background-repeat: no-repeat;
             background-size: 0% 2px;
+            display: inline-flex;
 
             &:hover {
                 background-size: 100% 2px;
@@ -289,5 +291,18 @@ h3.subtitle {
         font-style: italic;
         font-size: 1.3rem;
         line-height: 2;
+
+        strong {
+            font-weight: 900;
+        }
     }
+}
+
+.transitions {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 0 0;
+    border-top: 1px dashed $motion-dark;
+    margin: 3rem 0 0;
 }

@@ -29,7 +29,7 @@ export default {
       wordWrap: {
          type: Boolean,
          required: false,
-         default: false,
+         default: true,
       },
 
       // IntersectionObserver.
@@ -288,9 +288,9 @@ export default {
 
       // AnimeJS.
       initAnime() {
-         if ( this.origin ) {
-            anime.set( this.$refs.letter, { transformOrigin: this.origin })
-         }
+         // if ( this.origin ) {
+         //    anime.set( this.$refs.letter, { transformOrigin: this.origin })
+         // }
          this.$options.anime = anime({
             targets: this.$refs.letter,
 

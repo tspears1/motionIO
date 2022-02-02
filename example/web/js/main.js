@@ -1,2 +1,1290 @@
-(self.webpackChunkmotion_io=self.webpackChunkmotion_io||[]).push([[522],{500:(t,e,r)=>{"use strict";var n=r(30);const i={fadeIn:{opacity:[0,1]},slideInDown:{opacity:[0,1],translateY:["20vh",0]},slideInLeft:{opacity:[0,1],translateX:["-20vw",0]},slideInRight:{opacity:[0,1],translateX:["20vw",0]},slideInUp:{opacity:[0,1],translateY:["-20vh",0]},revealInDown:{"-webkit-clip-path":["inset(0% 0% 100% 0%)","inset(0% 0% 0% 0%)"],clipPath:["inset(0% 0% 100% 0%)","inset(0% 0% 0% 0%)"]},revealInLeft:{"-webkit-clip-path":["inset(0% 0% 0% 100%)","inset(0% 0% 0% 0%)"],clipPath:["inset(0% 0% 0% 100%)","inset(0% 0% 0% 0%)"]},revealInRight:{"-webkit-clip-path":["inset(0% 100% 0% 0%)","inset(0% 0% 0% 0%)"],clipPath:["inset(0% 100% 0% 0%)","inset(0% 0% 0% 0%)"]},revealInUp:{"-webkit-clip-path":["inset(100% 0% 0% 0%)","inset(0% 0% 0% 0%)"],clipPath:["inset(100% 0% 0% 0%)","inset(0% 0% 0% 0%)"]},textRevealInDown:{"-webkit-clip-path":["inset(-10% -10% 110% -10%)","inset( -10% -10% -10% -10%"],clipPath:["inset(-10% -10% 110% -10%)","inset( -10% -10% -10% -10%"]},textRevealInLeft:{"-webkit-clip-path":["inset(-10% -10% -10% 110%)","inset( -10% -10% -10% -10%"],clipPath:["inset(-10% -10% -10% 110%)","inset( -10% -10% -10% -10%"]},textRevealInRight:{"-webkit-clip-path":["inset(-10% 110% -10% -10%)","inset( -10% -10% -10% -10%"],clipPath:["inset(-10% 110% -10% -10%)","inset( -10% -10% -10% -10%"]},textRevealInUp:{"-webkit-clip-path":["inset(110% -10% -10% -10%)","inset( -10% -10% -10% -10%"],clipPath:["inset(110% -10% -10% -10%)","inset( -10% -10% -10% -10%"]},zoomIn:{opacity:[0,1],scaleX:[0,1],scaleY:[0,1]},zoomOut:{opacity:[0,1],scaleX:[2,1],scaleY:[2,1]},flipX:{rotateX:[90,0]},flipY:{rotateY:[90,0]},rotateLeft:{opacity:[0,1],rotate:[360,0]},rotateRight:{opacity:[0,1],rotate:[-360,0]},standRight:{skewZ:[20,0],rotateX:[90,0],translateX:["-3rem",0],translateY:["3rem",0]}};function o(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(t);e&&(n=n.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,n)}return r}function s(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?o(Object(r),!0).forEach((function(e){a(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):o(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function a(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function c(t){return function(t){if(Array.isArray(t))return u(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return u(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return u(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function u(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,n=new Array(e);r<e;r++)n[r]=t[r];return n}function l(t,e){for(var r=0;r<e.length;r++){var n=e[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}const h=function(){function t(e,r){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.selector=e,this.onBegin=function(){},this.onChange=function(){},this.onComplete=function(){},this.onEnter=function(){},this.onLeave=function(){},this.once=!1,this.threshold=.5,this.rootMargin="0px 0px 0px 0px",this.root=null,this.hasEntered=!1,this.anime={},this.custom=!1,this.delay=0,this.duration=1e3,this.easing="linear",this.children=!1,this.preset="fadeIn",this.stagger=!1,this.targets=[],Object.assign(this,r),this.init()}var e,r,o;return e=t,(r=[{key:"init",value:function(){this.initAnime(),this.initObserver()}},{key:"destroy",value:function(){this.observer&&this.observer.disconnect()}},{key:"initObserver",value:function(){var t=this,e={threshold:this.threshold,root:this.root,rootMargin:this.rootMargin},r=function(){t.hasEntered&&(t.anime.pause(),t.anime.reverse()),t.anime.play(),t.onEnter(),t.hasEntered||(t.hasEntered=!0),t.once&&t.observer.unobserve(entries[0].target)};this.observer=new IntersectionObserver((function(e){e[0].isIntersecting?r():(!t.once&&t.hasEntered&&(t.anime.pause(),t.anime.reverse(),t.anime.play()),t.onLeave()),t.onChange()}),e),this.observer.observe(this.selector)}},{key:"initAnime",value:function(){var t=this.custom?this.custom:i["".concat(this.preset)],e=Array.isArray(this.stagger)?n.Z.stagger.apply(n.Z,c(this.stagger)):n.Z.stagger(this.stagger),r=s(s({targets:this.children?this.selector.children:this.selector,autoplay:!1,loop:!1},t),{},{delay:this.stagger?e:this.delay,duration:this.duration,easing:this.easing,begin:this.onBegin,complete:this.onComplete});this.anime=(0,n.Z)(s({},r))}}])&&l(e.prototype,r),o&&l(e,o),t}();function p(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(t);e&&(n=n.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,n)}return r}function f(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?p(Object(r),!0).forEach((function(e){d(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):p(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function d(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function y(t){return function(t){if(Array.isArray(t))return g(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return g(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return g(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function g(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,n=new Array(e);r<e;r++)n[r]=t[r];return n}function b(t,e){for(var r=0;r<e.length;r++){var n=e[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}const m=function(){function t(e,r){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.selector=e,this.className="motionText",this.elementTag="span",this.mask=!1,this.style=!0,this.text=e.innerText,this.textGroup=[],this.wordWrap=!0,this.onBegin=function(){},this.onChange=function(){},this.onComplete=function(){},this.onEnter=function(){},this.onLeave=function(){},this.once=!1,this.threshold=.5,this.rootMargin="0px 0px 0px 0px",this.root=null,this.hasEntered=!1,this.anime={},this.custom=!1,this.delay=0,this.duration=500,this.easing="linear",this.preset="fadeIn",this.stagger=100,Object.assign(this,r),this.init()}var e,r,o;return e=t,(r=[{key:"init",value:function(){this.buildText(),this.renderText(),this.initAnime(),this.initObserver()}},{key:"buildText",value:function(){var t=this;this.text.split(" ").map((function(e){var r=e.split("");t.textGroup=[].concat(y(t.textGroup),[r])}))}},{key:"renderText",value:function(){this.selector.innerText="",this.wordWrap&&this.buildWrapper()}},{key:"buildWrapper",value:function(){var t=document.createElement(this.elementTag);t.classList.add(this.className),this.selector.appendChild(t),this.buildWords(this.textGroup,t)}},{key:"buildWords",value:function(t,e){var r=this;t.forEach((function(t,n){var i=document.createElement("span");i.classList.add("".concat(r.className,"__word")),i.classList.add("word-".concat(n+1)),r.style&&(i.style.display="inline-flex",n>0&&(i.style.marginLeft="0.5rem")),r.mask&&(i.style.webkitClipPath="polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )",i.style.clipPath="polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )"),e.appendChild(i),r.buildLetters(t,i)}))}},{key:"buildLetters",value:function(t,e){var r=this;t.forEach((function(t,n){var i=document.createElement("span");i.classList.add("".concat(r.className,"__letter")),i.classList.add("letter-".concat(n+1)),i.innerText=t,e.appendChild(i)}))}},{key:"destroy",value:function(){this.observer&&this.observer.disconnect()}},{key:"initObserver",value:function(){var t=this,e={threshold:this.threshold,root:this.root,rootMargin:this.rootMargin};this.observer=new IntersectionObserver((function(e){e[0].isIntersecting?function(e){t.hasEntered&&(t.anime.pause(),t.anime.reverse()),t.anime.play(),t.onEnter(e),t.hasEntered||(t.hasEntered=!0),t.once&&t.observer.unobserve(e[0].target)}(e):function(e){!t.once&&t.hasEntered&&(t.anime.pause(),t.anime.reverse(),t.anime.play()),t.onLeave(e)}(e),t.onChange(e)}),e),this.observer.observe(this.selector)}},{key:"initAnime",value:function(){var t=this.custom||i["".concat(this.preset)],e=n.Z.stagger.apply(n.Z,y(Array.isArray(this.stagger)?this.stagger:[this.stagger])),r=f(f({targets:this.selector.querySelectorAll(".".concat(this.className,"__letter")),autoplay:!1,loop:!1},t),{},{delay:this.stagger?e:this.delay,duration:this.duration,easing:this.easing,begin:this.onBegin,complete:this.onComplete});this.anime=(0,n.Z)(f({},r))}}])&&b(e.prototype,r),o&&b(e,o),t}();var v=r(538);function O(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(t);e&&(n=n.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,n)}return r}function w(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?O(Object(r),!0).forEach((function(e){j(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):O(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function j(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function A(t){return function(t){if(Array.isArray(t))return S(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return S(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return S(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function S(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,n=new Array(e);r<e;r++)n[r]=t[r];return n}const I={name:"motion",props:{once:{type:Boolean,required:!1,default:!1},observerRoot:{type:Object,required:!1,default:function(){return{root:null,rootMargin:"0px"}}},threshold:{type:[Function,Array,Number],required:!1,default:.5},children:{type:[Array,Boolean],required:!1,default:!1},custom:{type:Object,required:!1},delay:{type:[Number,Function],required:!1,default:0},duration:{type:[Number,Function],required:!1,default:1e3},easing:{type:[String,Function],required:!1,default:"linear"},origin:{type:String,required:!1},preset:{type:String,required:!1,default:"fadeIn"},svg:{type:Boolean,required:!1,default:!1},stagger:{type:[Array,Number],required:!1}},anime:{},observer:{},data:function(){return{hasEntered:!1}},computed:{observerOptions:function(){return{root:this.observerRoot.root,rootMargin:this.observerRoot.rootMargin,threshold:this.threshold}},selector:function(){return this.$el},staggerOptions:function(){return n.Z.stagger.apply(n.Z,A(Array.isArray(this.stagger)?this.stagger:[this.stagger]))},targetSelector:function(){return Array.isArray(this.children)?this.selector.querySelectorAll(this.children):1==this.children?this.selector.children:this.selector},transitionStyle:function(){return this.custom||i["".concat(this.preset)]},reduceMotion:function(){return localStorage.getItem("reduceMotion")}},mounted:function(){this.initAnime(),this.initObserver()},beforeDestroy:function(){this.$options.observer&&this.$options.observer.disconnect()},render:function(){return this.$scopedSlots.default()?this.$scopedSlots.default({entered:this.hasEntered,anime:this.$options.anime,observer:this.$options.observer})[0]:null},methods:{initObserver:function(){var t=this;this.$options.observer=new IntersectionObserver((function(e){e[0].isIntersecting?t.isIntersecting(e):t.isNotIntersecting(e),t.$emit("change",e[0].isIntersecting)}),this.observerOptions),this.$nextTick((function(){t.activateObserver()}))},activateObserver:function(){if(this.$scopedSlots.default()&&this.$scopedSlots.default().length>1)this.warn("[MotionIO] You may only wrap one element in a <intersect> component.");else if(!this.$scopedSlots.default()||this.$scopedSlots.default().length<1)return void this.warn("[MotionIO] You must have one child inside a <intersect> component.");this.$options.observer.observe(this.selector)},isIntersecting:function(t){!0===this.hasEntered&&(this.$options.anime.pause(),this.$options.anime.reverse()),this.$options.anime.play(),this.$emit("enter",t[0]),this.hasEntered?this.once&&this.$options.observer.unobserve(t[0].target):this.hasEntered=!0},isNotIntersecting:function(t){!this.once&&this.hasEntered&&(this.$options.anime.pause(),this.$options.anime.reverse(),this.$options.anime.play()),this.$emit("leave",t[0])},initAnime:function(){var t=this;this.origin&&n.Z.set(this.targetSelector,{transformOrigin:this.origin}),this.$options.anime=(0,n.Z)(w(w({targets:this.targetSelector,autoplay:!1,loop:!1,strokeDashoffset:this.svg?[n.Z.setDashoffset,0]:""},this.transitionStyle),{},{delay:this.stagger?this.staggerOptions:this.delay,duration:"true"==this.reduceMotion?0:this.duration,easing:this.easing,begin:function(){for(var e=arguments.length,r=new Array(e),n=0;n<e;n++)r[n]=arguments[n];t.$emit("begin",r)},complete:function(){for(var e=arguments.length,r=new Array(e),n=0;n<e;n++)r[n]=arguments[n];t.$emit("complete",r)}}))},warn:function(t){v.Z.config.silent||console.error(t)}}};function $(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(t);e&&(n=n.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,n)}return r}function E(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?$(Object(r),!0).forEach((function(e){k(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):$(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function k(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function P(t){return function(t){if(Array.isArray(t))return x(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return x(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return x(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function x(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,n=new Array(e);r<e;r++)n[r]=t[r];return n}const q={name:"motion-text",props:{applyStyles:{type:Boolean,required:!1,default:!0},block:{type:String,required:!1,default:"motionText"},mask:{type:Boolean,required:!1,default:!1},tag:{type:String,required:!1,default:"span"},wordWrap:{type:Boolean,required:!1,default:!1},once:{type:Boolean,required:!1,default:!1},observerRoot:{type:Object,required:!1,default:function(){return{root:null,rootMargin:"0px"}}},threshold:{type:[Function,Array,Number],required:!1,default:.5},custom:{type:Object,required:!1},delay:{type:[Number,Function],required:!1,default:0},duration:{type:[Number,Function],required:!1,default:500},easing:{type:[String,Function],required:!1,default:"linear"},origin:{type:String,required:!1},preset:{type:String,required:!1,default:"fadeIn"},stagger:{type:[Array,Number],required:!1,default:100}},anime:{},observer:{},data:function(){return{hasEntered:!1,html:""}},computed:{observerOptions:function(){return{root:this.observerRoot.root,rootMargin:this.observerRoot.rootMargin,threshold:this.threshold}},staggerOptions:function(){return n.Z.stagger.apply(n.Z,P(Array.isArray(this.stagger)?this.stagger:[this.stagger]))},transitionStyle:function(){return this.custom||i["".concat(this.preset)]},reduceMotion:function(){return localStorage.getItem("reduceMotion")}},mounted:function(){this.initAnime(),this.initObserver()},beforeDestroy:function(){this.$options.observer&&this.$options.observer.disconnect()},render:function(t){var e=this;return t(this.tag,{class:"".concat(this.block,"__wrapper")},this.$scopedSlots.default({entered:this.hasEntered,anime:this.$options.anime,observer:this.$options.observer}).map((function(r){return e.renderBlock(t,r)})))},methods:{renderBlock:function(t,e){var r=this;return e.text||Array.isArray(e.children)?e.text&&this.wordWrap?e.text.split(" ").map((function(e,n){var i=e.split("").map((function(e){return" "!==e&&"\n"!==e?t("span",{class:"".concat(r.block,"__letter"),ref:"letter",refInFor:!0},e):e}));return t("span",{class:"".concat(r.block,"__word"),style:r.buildStyles(n)},i)})):e.text?e.text.split("").map((function(e){return" "!==e&&"\n"!==e?t("span",{class:"".concat(r.block,"__letter"),ref:"letter",refInFor:!0},e):e})):Array.isArray(e.children)?t(e.tag,{class:e.data&&e.data.staticClass?e.data.staticClass:""},e.children.map((function(e){return r.renderBlock(t,e)}))):void 0:e},buildStyles:function(t){var e={};return this.applyStyles&&(e.display="inline-flex",t>0&&(e.marginLeft="0.5rem")),this.mask&&(e.webkitClipPath="polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )",e.clipPath="polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )"),e},initObserver:function(){var t=this;this.$options.observer=new IntersectionObserver((function(e){e[0].isIntersecting?t.isIntersecting(e):t.isNotIntersecting(e),t.$emit("change",e[0].isIntersecting)}),this.observerOptions),this.$nextTick((function(){t.activateObserver()}))},activateObserver:function(){this.$options.observer.observe(this.$el)},isIntersecting:function(t){var e=this;this.hasEntered&&(this.$options.anime.pause(),this.$options.anime.reverse()),setTimeout((function(){e.$options.anime.play()}),this.delay),this.$emit("enter",t[0]),this.hasEntered||(this.hasEntered=!0),this.once&&this.$options.observer.unobserve(t[0].target)},isNotIntersecting:function(t){!this.once&&this.hasEntered&&(this.$options.anime.pause(),this.$options.anime.reverse(),this.$options.anime.play()),this.$emit("leave",t[0])},initAnime:function(){var t=this;this.origin&&n.Z.set(this.$refs.letter,{transformOrigin:this.origin}),this.$options.anime=(0,n.Z)(E(E({targets:this.$refs.letter,autoplay:!1,loop:!1},this.transitionStyle),{},{delay:this.stagger?this.staggerOptions:"",duration:"true"==this.reduceMotion?0:this.duration,easing:this.easing,begin:function(e){t.$emit("begin",e)},complete:function(e){t.$emit("complete",e)}}))},warn:function(t){v.Z.config.silent||console.error(t)}}};r(355);new v.Z({el:"#root",delimiters:["${","}"],components:{Motion:I,MotionText:q},mounted:function(){document.querySelectorAll("[data-motion-text]").forEach((function(t){return new m(t,{preset:"slideInUp",easing:"easeOutExpo",mask:!1})})),document.querySelectorAll("[data-motion]").forEach((function(t){return new h(t,{duration:750,threshold:.5,delay:500,easing:"easeOutBounce",preset:"slideInRight"})})),document.querySelectorAll("[data-motion-group]").forEach((function(t){return new h(t,{duration:1500,threshold:.4,easing:"easeOutCirc",children:!0,stagger:250,preset:"revealInUp"})}))}})},355:()=>{var t=matchMedia("(prefers-reduced-motion)"),e=function(t){localStorage.setItem("reduceMotion",t)},r=function(){t.matches?(console.warn("[MOTION-IO]: Reduced Motion setting is active. Autoplay and animations have been turned off."),e(!0),document.querySelectorAll("video").forEach((function(t){t.getAttribute("autoplay")&&t.pause()}))):e(!1)};r(),t.addEventListener("change",r)},777:()=>{}},t=>{"use strict";var e=e=>t(t.s=e);t.O(0,[870,898],(()=>(e(500),e(777))));t.O()}]);
+(self["webpackChunkmotion_io"] = self["webpackChunkmotion_io"] || []).push([["/js/main"],{
+
+/***/ "./example/main.js":
+/*!*************************!*\
+  !*** ./example/main.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _src_motion_io_motion_io__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/motion-io/motion-io */ "./src/motion-io/motion-io.js");
+/* harmony import */ var _src_motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/motion-io/motion-text-io */ "./src/motion-io/motion-text-io.js");
+/* harmony import */ var _src_motion_io_v_motion_io__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../src/motion-io/v-motion-io */ "./src/motion-io/v-motion-io.js");
+/* harmony import */ var _src_motion_io_v_motion_text_io__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/motion-io/v-motion-text-io */ "./src/motion-io/v-motion-text-io.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _src_motion_io_utilities_reduced_motion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../src/motion-io/utilities/reduced-motion */ "./src/motion-io/utilities/reduced-motion.js");
+/* harmony import */ var _src_motion_io_utilities_reduced_motion__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_src_motion_io_utilities_reduced_motion__WEBPACK_IMPORTED_MODULE_4__);
+// Vanilla Components.
+
+ // Vue Components.
+
+
+ // Vue.
+
+ // Reduced Motion.
+
+ // eslint-disable-next-line
+
+new vue__WEBPACK_IMPORTED_MODULE_5__.default({
+  el: '#root',
+  delimiters: ["${", "}"],
+  components: {
+    Motion: _src_motion_io_v_motion_io__WEBPACK_IMPORTED_MODULE_2__.default,
+    MotionText: _src_motion_io_v_motion_text_io__WEBPACK_IMPORTED_MODULE_3__.default
+  },
+  mounted: function mounted() {
+    document.querySelectorAll('[data-motion-text]').forEach(function (el) {
+      return new _src_motion_io_motion_text_io__WEBPACK_IMPORTED_MODULE_1__.default(el, {
+        preset: 'slideInUp',
+        easing: 'easeOutExpo',
+        mask: false
+      });
+    });
+    document.querySelectorAll('[data-motion]').forEach(function (el) {
+      return new _src_motion_io_motion_io__WEBPACK_IMPORTED_MODULE_0__.default(el, {
+        duration: 750,
+        threshold: 0.5,
+        delay: 500,
+        easing: 'easeOutBounce',
+        preset: 'slideInRight'
+      });
+    });
+    document.querySelectorAll('[data-motion-group]').forEach(function (el) {
+      return new _src_motion_io_motion_io__WEBPACK_IMPORTED_MODULE_0__.default(el, {
+        duration: 1500,
+        threshold: 0.4,
+        easing: 'easeOutCirc',
+        children: true,
+        stagger: 250,
+        preset: 'revealInUp'
+      });
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./src/motion-io/motion-io.js":
+/*!************************************!*\
+  !*** ./src/motion-io/motion-io.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
+/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transitions */ "./src/motion-io/transitions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+ // Todo: Add 'targets' option to anime to allow array of elements inside parent
+
+var MotionIO = /*#__PURE__*/function () {
+  function MotionIO(el, options) {
+    _classCallCheck(this, MotionIO);
+
+    this.selector = el; // Callbacks.
+
+    this.onBegin = function () {};
+
+    this.onChange = function () {};
+
+    this.onComplete = function () {};
+
+    this.onEnter = function () {};
+
+    this.onLeave = function () {}; // IntersectionObserver.
+
+
+    this.once = false;
+    this.threshold = 0.5;
+    this.rootMargin = '0px 0px 0px 0px';
+    this.root = null;
+    this.hasEntered = false; // AnimeJS.
+
+    this.anime = {};
+    this.custom = false;
+    this.delay = 0;
+    this.duration = 1000;
+    this.easing = 'linear';
+    this.children = false;
+    this.preset = 'fadeIn';
+    this.stagger = false;
+    this.targets = []; // Override defaults.
+
+    Object.assign(this, options);
+    this.init();
+  }
+
+  _createClass(MotionIO, [{
+    key: "init",
+    value: function init() {
+      this.initAnime();
+      this.initObserver();
+    }
+  }, {
+    key: "destroy",
+    value: function destroy() {
+      if (this.observer) {
+        this.observer.disconnect();
+      }
+    }
+  }, {
+    key: "initObserver",
+    value: function initObserver() {
+      var _this = this;
+
+      var observerOptions = {
+        threshold: this.threshold,
+        root: this.root,
+        rootMargin: this.rootMargin
+      };
+
+      var isIntersecting = function isIntersecting() {
+        // Run Animation.
+        if (_this.hasEntered) {
+          _this.anime.pause();
+
+          _this.anime.reverse();
+        }
+
+        _this.anime.play(); // Run Callback.
+
+
+        _this.onEnter(); // Update on first entrance.
+
+
+        if (!_this.hasEntered) {
+          _this.hasEntered = true;
+        } // Remove observer.
+
+
+        if (_this.once) {
+          _this.observer.unobserve(entries[0].target);
+        }
+      };
+
+      var isNotIntersecting = function isNotIntersecting() {
+        if (!_this.once && _this.hasEntered) {
+          _this.anime.pause();
+
+          _this.anime.reverse();
+
+          _this.anime.play();
+        }
+
+        _this.onLeave();
+      };
+
+      this.observer = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) {
+          isNotIntersecting();
+        } else {
+          isIntersecting();
+        }
+
+        _this.onChange();
+      }, observerOptions);
+      this.observer.observe(this.selector);
+    }
+  }, {
+    key: "initAnime",
+    value: function initAnime() {
+      var transitionStyle = this.custom ? this.custom : _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+      var staggerOptions = Array.isArray(this.stagger) ? animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(this.stagger)) : animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger(this.stagger);
+
+      var settings = _objectSpread(_objectSpread({
+        targets: this.children ? this.selector.children : this.selector,
+        autoplay: false,
+        loop: false
+      }, transitionStyle), {}, {
+        delay: this.stagger ? staggerOptions : this.delay,
+        duration: this.duration,
+        easing: this.easing,
+        begin: this.onBegin,
+        complete: this.onComplete
+      });
+
+      this.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread({}, settings));
+    }
+  }]);
+
+  return MotionIO;
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MotionIO);
+
+/***/ }),
+
+/***/ "./src/motion-io/motion-text-io.js":
+/*!*****************************************!*\
+  !*** ./src/motion-io/motion-text-io.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
+/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transitions */ "./src/motion-io/transitions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var MotionTextIO = /*#__PURE__*/function () {
+  function MotionTextIO(el, options) {
+    _classCallCheck(this, MotionTextIO);
+
+    this.selector = el; // Text.
+
+    this.className = 'motionText';
+    this.elementTag = 'span';
+    this.mask = false;
+    this.style = true;
+    this.text = el.innerText;
+    this.textGroup = [];
+    this.wordWrap = true; // Callbacks.
+
+    this.onBegin = function () {};
+
+    this.onChange = function () {};
+
+    this.onComplete = function () {};
+
+    this.onEnter = function () {};
+
+    this.onLeave = function () {}; // IntersectionObserver.
+
+
+    this.once = false;
+    this.threshold = 0.5;
+    this.rootMargin = '0px 0px 0px 0px';
+    this.root = null;
+    this.hasEntered = false; // AnimeJS.
+
+    this.anime = {};
+    this.custom = false;
+    this.delay = 0;
+    this.duration = 500;
+    this.easing = 'linear';
+    this.preset = 'fadeIn';
+    this.stagger = 100; // Override defaults.
+
+    Object.assign(this, options);
+    this.init();
+  }
+
+  _createClass(MotionTextIO, [{
+    key: "init",
+    value: function init() {
+      this.buildText();
+      this.renderText();
+      this.initAnime();
+      this.initObserver();
+    }
+  }, {
+    key: "buildText",
+    value: function buildText() {
+      var _this = this;
+
+      var textWord = this.text.split(' ');
+      textWord.map(function (word) {
+        var wordArray = word.split('');
+        _this.textGroup = [].concat(_toConsumableArray(_this.textGroup), [wordArray]);
+      });
+    }
+  }, {
+    key: "renderText",
+    value: function renderText() {
+      this.selector.innerText = '';
+
+      if (this.wordWrap) {
+        this.buildWrapper();
+      }
+    }
+  }, {
+    key: "buildWrapper",
+    value: function buildWrapper() {
+      var wrapper = document.createElement(this.elementTag);
+      wrapper.classList.add(this.className);
+      this.selector.appendChild(wrapper);
+      this.buildWords(this.textGroup, wrapper);
+    }
+  }, {
+    key: "buildWords",
+    value: function buildWords(phrase, wrapper) {
+      var _this2 = this;
+
+      phrase.forEach(function (word, index) {
+        var wordEl = document.createElement('span');
+        wordEl.classList.add("".concat(_this2.className, "__word"));
+        wordEl.classList.add("word-".concat(index + 1));
+
+        if (_this2.style) {
+          wordEl.style.display = 'inline-flex';
+
+          if (index > 0) {
+            wordEl.style.marginLeft = '0.5rem';
+          }
+        }
+
+        if (_this2.mask) {
+          wordEl.style.webkitClipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )';
+          wordEl.style.clipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )';
+        }
+
+        wrapper.appendChild(wordEl);
+
+        _this2.buildLetters(word, wordEl);
+      });
+    }
+  }, {
+    key: "buildLetters",
+    value: function buildLetters(word, wordEl) {
+      var _this3 = this;
+
+      word.forEach(function (letter, index) {
+        var letterEl = document.createElement('span');
+        letterEl.classList.add("".concat(_this3.className, "__letter"));
+        letterEl.classList.add("letter-".concat(index + 1));
+        letterEl.innerText = letter;
+        wordEl.appendChild(letterEl);
+      });
+    }
+  }, {
+    key: "destroy",
+    value: function destroy() {
+      if (this.observer) {
+        this.observer.disconnect();
+      }
+    }
+  }, {
+    key: "initObserver",
+    value: function initObserver() {
+      var _this4 = this;
+
+      var observerOptions = {
+        threshold: this.threshold,
+        root: this.root,
+        rootMargin: this.rootMargin
+      };
+
+      var isIntersecting = function isIntersecting(entries) {
+        // Run Animation.
+        if (_this4.hasEntered) {
+          _this4.anime.pause();
+
+          _this4.anime.reverse();
+        }
+
+        _this4.anime.play(); // Run Callback.
+
+
+        _this4.onEnter(entries); // Update on first entrance.
+
+
+        if (!_this4.hasEntered) {
+          _this4.hasEntered = true;
+        } // Remove observer.
+
+
+        if (_this4.once) {
+          _this4.observer.unobserve(entries[0].target);
+        }
+      };
+
+      var isNotIntersecting = function isNotIntersecting(entries) {
+        if (!_this4.once && _this4.hasEntered) {
+          _this4.anime.pause();
+
+          _this4.anime.reverse();
+
+          _this4.anime.play();
+        }
+
+        _this4.onLeave(entries);
+      };
+
+      this.observer = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) {
+          isNotIntersecting(entries);
+        } else {
+          isIntersecting(entries);
+        }
+
+        _this4.onChange(entries);
+      }, observerOptions);
+      this.observer.observe(this.selector);
+    }
+  }, {
+    key: "initAnime",
+    value: function initAnime() {
+      var transitionStyle = this.custom || _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+      var staggerOptions = animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
+
+      var settings = _objectSpread(_objectSpread({
+        targets: this.selector.querySelectorAll(".".concat(this.className, "__letter")),
+        autoplay: false,
+        loop: false
+      }, transitionStyle), {}, {
+        delay: this.stagger ? staggerOptions : this.delay,
+        duration: this.duration,
+        easing: this.easing,
+        begin: this.onBegin,
+        complete: this.onComplete
+      });
+
+      this.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread({}, settings));
+    }
+  }]);
+
+  return MotionTextIO;
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MotionTextIO);
+
+/***/ }),
+
+/***/ "./src/motion-io/transitions.js":
+/*!**************************************!*\
+  !*** ./src/motion-io/transitions.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var transitions = {
+  fadeIn: {
+    opacity: [0, 1]
+  },
+  slideInDown: {
+    opacity: [0, 1],
+    translateY: ['20vh', 0]
+  },
+  slideInLeft: {
+    opacity: [0, 1],
+    translateX: ['-20vw', 0]
+  },
+  slideInRight: {
+    opacity: [0, 1],
+    translateX: ['20vw', 0]
+  },
+  slideInUp: {
+    opacity: [0, 1],
+    translateY: ['-20vh', 0]
+  },
+  revealInDown: {
+    "-webkit-clip-path": ['inset(0% 0% 100% 0%)', 'inset(0% 0% 0% 0%)'],
+    clipPath: ['inset(0% 0% 100% 0%)', 'inset(0% 0% 0% 0%)']
+  },
+  revealInLeft: {
+    "-webkit-clip-path": ['inset(0% 0% 0% 100%)', 'inset(0% 0% 0% 0%)'],
+    clipPath: ['inset(0% 0% 0% 100%)', 'inset(0% 0% 0% 0%)']
+  },
+  revealInRight: {
+    "-webkit-clip-path": ['inset(0% 100% 0% 0%)', 'inset(0% 0% 0% 0%)'],
+    clipPath: ['inset(0% 100% 0% 0%)', 'inset(0% 0% 0% 0%)']
+  },
+  revealInUp: {
+    "-webkit-clip-path": ['inset(100% 0% 0% 0%)', 'inset(0% 0% 0% 0%)'],
+    clipPath: ['inset(100% 0% 0% 0%)', 'inset(0% 0% 0% 0%)']
+  },
+  textRevealInDown: {
+    "-webkit-clip-path": ['inset(-10% -10% 110% -10%)', 'inset( -10% -10% -10% -10%'],
+    clipPath: ['inset(-10% -10% 110% -10%)', 'inset( -10% -10% -10% -10%']
+  },
+  textRevealInLeft: {
+    "-webkit-clip-path": ['inset(-10% -10% -10% 110%)', 'inset( -10% -10% -10% -10%'],
+    clipPath: ['inset(-10% -10% -10% 110%)', 'inset( -10% -10% -10% -10%']
+  },
+  textRevealInRight: {
+    "-webkit-clip-path": ['inset(-10% 110% -10% -10%)', 'inset( -10% -10% -10% -10%'],
+    clipPath: ['inset(-10% 110% -10% -10%)', 'inset( -10% -10% -10% -10%']
+  },
+  textRevealInUp: {
+    "-webkit-clip-path": ['inset(110% -10% -10% -10%)', 'inset( -10% -10% -10% -10%'],
+    clipPath: ['inset(110% -10% -10% -10%)', 'inset( -10% -10% -10% -10%']
+  },
+  bounceInDown: {
+    easing: 'easeOutBounce',
+    opacity: [0, 1],
+    translateY: ['20vh', 0]
+  },
+  bounceInLeft: {
+    easing: 'easeOutBounce',
+    opacity: [0, 1],
+    translateX: ['-20vw', 0]
+  },
+  bounceInRight: {
+    easing: 'easeOutBounce',
+    opacity: [0, 1],
+    translateX: ['20vw', 0]
+  },
+  bounceInUp: {
+    easing: 'easeOutBounce',
+    opacity: [0, 1],
+    translateY: ['-20vh', 0]
+  },
+  zoomIn: {
+    opacity: [0, 1],
+    scaleX: [0, 1],
+    scaleY: [0, 1]
+  },
+  zoomOut: {
+    opacity: [0, 1],
+    scaleX: [2, 1],
+    scaleY: [2, 1]
+  },
+  flipX: {
+    rotateX: [90, 0]
+  },
+  flipY: {
+    rotateY: [90, 0]
+  },
+  rotateLeft: {
+    opacity: [0, 1],
+    rotate: [360, 0]
+  },
+  rotateRight: {
+    opacity: [0, 1],
+    rotate: [-360, 0]
+  },
+  standRight: {
+    skewZ: [20, 0],
+    rotateX: [90, 0],
+    translateX: ['-3rem', 0],
+    translateY: ['3rem', 0]
+  } // tilt
+
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (transitions);
+
+/***/ }),
+
+/***/ "./src/motion-io/utilities/reduced-motion.js":
+/*!***************************************************!*\
+  !*** ./src/motion-io/utilities/reduced-motion.js ***!
+  \***************************************************/
+/***/ (() => {
+
+/**
+* Prefers Reduced Motion Settings
+*
+*  Checks for reduced motion setting and stores status in LocalStorage for use in other scripts.
+*
+*/
+var motionQuery = matchMedia('(prefers-reduced-motion)'); // Store in localStorage for use in other files.
+// Ex.
+// * let reduceMotion = localStorage.getItem('reduceMotion')
+
+var updateLocalStorage = function updateLocalStorage(value) {
+  localStorage.setItem('reduceMotion', value);
+};
+
+var stopVideoAutoplay = function stopVideoAutoplay() {
+  // Find all HTML5 video elements.
+  var videos = document.querySelectorAll('video');
+  videos.forEach(function (video) {
+    // Pause all videos with autoplay.
+    var autoplay = video.getAttribute('autoplay');
+
+    if (autoplay) {
+      video.pause();
+    }
+  });
+};
+
+var reducedMotionCheck = function reducedMotionCheck() {
+  if (motionQuery.matches) {
+    // Add functions for reduced motion here.
+    console.warn('[MOTION-IO]: Reduced Motion setting is active. Autoplay and animations have been turned off.');
+    updateLocalStorage(true);
+    stopVideoAutoplay();
+  } else {
+    updateLocalStorage(false);
+  }
+};
+
+reducedMotionCheck();
+motionQuery.addEventListener('change', reducedMotionCheck);
+
+/***/ }),
+
+/***/ "./src/motion-io/v-motion-io.js":
+/*!**************************************!*\
+  !*** ./src/motion-io/v-motion-io.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
+/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transitions */ "./src/motion-io/transitions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'motion',
+  props: {
+    // IntersectionObserver.
+    once: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    observerRoot: {
+      type: Object,
+      required: false,
+      "default": function _default() {
+        return {
+          root: null,
+          rootMargin: '0px'
+        };
+      }
+    },
+    threshold: {
+      type: [Function, Array, Number],
+      required: false,
+      "default": 0.5
+    },
+    // AnimeJS.
+    children: {
+      type: [Array, Boolean],
+      required: false,
+      "default": false
+    },
+    custom: {
+      type: Object,
+      required: false
+    },
+    delay: {
+      type: [Number, Function],
+      required: false,
+      "default": 0
+    },
+    duration: {
+      type: [Number, Function],
+      required: false,
+      "default": 1000
+    },
+    easing: {
+      type: [String, Function],
+      required: false,
+      "default": 'linear'
+    },
+    origin: {
+      type: String,
+      required: false
+    },
+    preset: {
+      type: String,
+      required: false,
+      "default": 'fadeIn'
+    },
+    svg: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    stagger: {
+      type: [Array, Number],
+      required: false
+    }
+  },
+  anime: {},
+  observer: {},
+  data: function data() {
+    return {
+      hasEntered: false
+    };
+  },
+  computed: {
+    observerOptions: function observerOptions() {
+      return {
+        root: this.observerRoot.root,
+        rootMargin: this.observerRoot.rootMargin,
+        threshold: this.threshold
+      };
+    },
+    selector: function selector() {
+      return this.$el;
+    },
+    staggerOptions: function staggerOptions() {
+      return animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
+    },
+    targetSelector: function targetSelector() {
+      if (Array.isArray(this.children)) {
+        return this.selector.querySelectorAll(this.children);
+      } else if (this.children == true) {
+        return this.selector.children;
+      } else {
+        return this.selector;
+      }
+    },
+    transitionStyle: function transitionStyle() {
+      return this.custom || _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+    },
+    reduceMotion: function reduceMotion() {
+      return localStorage.getItem('reduceMotion');
+    }
+  },
+  mounted: function mounted() {
+    this.initAnime();
+    this.initObserver();
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.$options.observer) {
+      this.$options.observer.disconnect();
+    }
+  },
+  render: function render() {
+    return this.$scopedSlots["default"]() ? this.$scopedSlots["default"]({
+      entered: this.hasEntered,
+      anime: this.$options.anime,
+      observer: this.$options.observer
+    })[0] : null;
+  },
+  methods: {
+    // IntersectionObserver.
+    initObserver: function initObserver() {
+      var _this = this;
+
+      this.$options.observer = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) {
+          _this.isNotIntersecting(entries);
+        } else {
+          _this.isIntersecting(entries);
+        }
+
+        _this.$emit('change', entries[0].isIntersecting);
+      }, this.observerOptions);
+      this.$nextTick(function () {
+        _this.activateObserver();
+      });
+    },
+    activateObserver: function activateObserver() {
+      if (this.$scopedSlots["default"]() && this.$scopedSlots["default"]().length > 1) {
+        this.warn('[MotionIO] You may only wrap one element in a <intersect> component.');
+      } else if (!this.$scopedSlots["default"]() || this.$scopedSlots["default"]().length < 1) {
+        this.warn('[MotionIO] You must have one child inside a <intersect> component.');
+        return;
+      }
+
+      this.$options.observer.observe(this.selector);
+    },
+    isIntersecting: function isIntersecting(entries) {
+      // Run Animation.
+      if (this.hasEntered === true) {
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+      }
+
+      this.$options.anime.play(); // Run Callback.
+
+      this.$emit('enter', entries[0]); // Update on first entrance.
+
+      if (!this.hasEntered) {
+        this.hasEntered = true;
+        return;
+      } // Remove observer.
+
+
+      if (this.once) {
+        this.$options.observer.unobserve(entries[0].target);
+      }
+    },
+    isNotIntersecting: function isNotIntersecting(entries) {
+      if (!this.once && this.hasEntered) {
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+        this.$options.anime.play();
+      }
+
+      this.$emit('leave', entries[0]);
+    },
+    // AnimeJS.
+    initAnime: function initAnime() {
+      var _this2 = this;
+
+      if (this.origin) {
+        animejs__WEBPACK_IMPORTED_MODULE_0__.default.set(this.targetSelector, {
+          transformOrigin: this.origin
+        });
+      }
+
+      this.$options.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread(_objectSpread({
+        targets: this.targetSelector,
+        autoplay: false,
+        loop: false,
+        strokeDashoffset: this.svg ? [animejs__WEBPACK_IMPORTED_MODULE_0__.default.setDashoffset, 0] : ''
+      }, this.transitionStyle), {}, {
+        delay: this.stagger ? this.staggerOptions : this.delay,
+        duration: this.reduceMotion == "true" ? 0 : this.duration,
+        easing: this.easing,
+        begin: function begin() {
+          for (var _len = arguments.length, anime = new Array(_len), _key = 0; _key < _len; _key++) {
+            anime[_key] = arguments[_key];
+          }
+
+          _this2.$emit('begin', anime);
+        },
+        complete: function complete() {
+          for (var _len2 = arguments.length, anime = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            anime[_key2] = arguments[_key2];
+          }
+
+          _this2.$emit('complete', anime);
+        }
+      }));
+    },
+    // Utility.
+    warn: function warn(message) {
+      if (!vue__WEBPACK_IMPORTED_MODULE_2__.default.config.silent) {
+        console.error(message);
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./src/motion-io/v-motion-text-io.js":
+/*!*******************************************!*\
+  !*** ./src/motion-io/v-motion-text-io.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
+/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transitions */ "./src/motion-io/transitions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'motion-text',
+  props: {
+    applyStyles: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    block: {
+      type: String,
+      required: false,
+      "default": 'motionText'
+    },
+    mask: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    tag: {
+      type: String,
+      required: false,
+      "default": 'span'
+    },
+    wordWrap: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    // IntersectionObserver.
+    once: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    observerRoot: {
+      type: Object,
+      required: false,
+      "default": function _default() {
+        return {
+          root: null,
+          rootMargin: '0px'
+        };
+      }
+    },
+    threshold: {
+      type: [Function, Array, Number],
+      required: false,
+      "default": 0.5
+    },
+    // AnimeJS.
+    custom: {
+      type: Object,
+      required: false
+    },
+    delay: {
+      type: [Number, Function],
+      required: false,
+      "default": 0
+    },
+    duration: {
+      type: [Number, Function],
+      required: false,
+      "default": 500
+    },
+    easing: {
+      type: [String, Function],
+      required: false,
+      "default": 'linear'
+    },
+    origin: {
+      type: String,
+      required: false
+    },
+    preset: {
+      type: String,
+      required: false,
+      "default": 'fadeIn'
+    },
+    stagger: {
+      type: [Array, Number],
+      required: false,
+      "default": 100
+    }
+  },
+  anime: {},
+  observer: {},
+  data: function data() {
+    return {
+      hasEntered: false,
+      html: ''
+    };
+  },
+  computed: {
+    observerOptions: function observerOptions() {
+      return {
+        root: this.observerRoot.root,
+        rootMargin: this.observerRoot.rootMargin,
+        threshold: this.threshold
+      };
+    },
+    staggerOptions: function staggerOptions() {
+      return animejs__WEBPACK_IMPORTED_MODULE_0__.default.stagger.apply(animejs__WEBPACK_IMPORTED_MODULE_0__.default, _toConsumableArray(Array.isArray(this.stagger) ? this.stagger : [this.stagger]));
+    },
+    transitionStyle: function transitionStyle() {
+      return this.custom || _transitions__WEBPACK_IMPORTED_MODULE_1__.default["".concat(this.preset)];
+    },
+    reduceMotion: function reduceMotion() {
+      return localStorage.getItem('reduceMotion');
+    }
+  },
+  mounted: function mounted() {
+    this.initAnime();
+    this.initObserver();
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.$options.observer) {
+      this.$options.observer.disconnect();
+    }
+  },
+  render: function render(h) {
+    var _this = this;
+
+    return h(this.tag, {
+      "class": "".concat(this.block, "__wrapper")
+    }, this.$scopedSlots["default"]({
+      entered: this.hasEntered,
+      anime: this.$options.anime,
+      observer: this.$options.observer
+    }).map(function (node) {
+      return _this.renderBlock(h, node);
+    }));
+  },
+  methods: {
+    renderBlock: function renderBlock(h, block) {
+      var _this2 = this;
+
+      // handle tag without text (like a <br/>)
+
+      /*
+         * If it's something visible, like an <hr/>, you could add in a nested
+         * conditional statement to check for those elements and then return
+         * the block with a `${this.block}__letter` class added so that it can
+         * still be animated. Or a different class/attribute so it can be
+         * animated differently!
+         */
+      if (!block.text && !Array.isArray(block.children)) {
+        return block;
+      } // add word span around letters if true.
+
+
+      if (block.text && this.wordWrap) {
+        return block.text.split(" ").map(function (word, index) {
+          var wordArray = word.split("").map(function (letter) {
+            if (letter !== " " && letter !== "\n") {
+              // Return character as span element
+              return h("span", {
+                "class": "".concat(_this2.block, "__letter"),
+                ref: 'letter',
+                refInFor: true
+              }, letter);
+            } else {
+              // Otherwise, return just the space/new line as is, without spans
+              return letter;
+            }
+          });
+          return h("span", {
+            "class": "".concat(_this2.block, "__word"),
+            style: _this2.buildStyles(index)
+          }, wordArray);
+        });
+      } // Convert each text into <span>
+
+
+      if (block.text) {
+        // Convert to array for easier handling
+        return block.text.split("").map(function (letter) {
+          // If it's not a space or newline (could be replaced with regex)
+          if (letter !== " " && letter !== "\n") {
+            // Return character as span element
+            return h("span", {
+              "class": "".concat(_this2.block, "__letter"),
+              ref: 'letter',
+              refInFor: true
+            }, letter);
+          } else {
+            // Otherwise, return just the space/new line as is, without spans
+            return letter;
+          }
+        });
+      } // Recursive: if element and has children, loop through each child and re-run
+
+
+      if (Array.isArray(block.children)) {
+        return h(block.tag, {
+          // This captures the class that was added in the slot, if available
+          // Emptry string if no class
+          "class": block.data && block.data.staticClass ? block.data.staticClass : ""
+        }, block.children.map(function (childBlock) {
+          return _this2.renderBlock(h, childBlock);
+        }));
+      }
+    },
+    buildStyles: function buildStyles(index) {
+      var styles = {};
+
+      if (this.applyStyles) {
+        styles.display = 'inline-flex';
+
+        if (index > 0) {
+          styles.marginLeft = '0.5rem';
+        }
+      }
+
+      if (this.mask) {
+        styles.webkitClipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )';
+        styles.clipPath = 'polygon( -10% -10%, 110% -10%, 110% 110%, -10% 110% )';
+      }
+
+      return styles;
+    },
+    // IntersectionObserver.
+    initObserver: function initObserver() {
+      var _this3 = this;
+
+      this.$options.observer = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) {
+          _this3.isNotIntersecting(entries);
+        } else {
+          _this3.isIntersecting(entries);
+        }
+
+        _this3.$emit('change', entries[0].isIntersecting);
+      }, this.observerOptions);
+      this.$nextTick(function () {
+        _this3.activateObserver();
+      });
+    },
+    activateObserver: function activateObserver() {
+      this.$options.observer.observe(this.$el);
+    },
+    isIntersecting: function isIntersecting(entries) {
+      var _this4 = this;
+
+      // Run Animation.
+      if (this.hasEntered) {
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+      }
+
+      setTimeout(function () {
+        _this4.$options.anime.play();
+      }, this.delay); // Run Callback.
+
+      this.$emit('enter', entries[0]); // Update on first entrance.
+
+      if (!this.hasEntered) {
+        this.hasEntered = true;
+      } // Remove observer.
+
+
+      if (this.once) {
+        this.$options.observer.unobserve(entries[0].target);
+      }
+    },
+    isNotIntersecting: function isNotIntersecting(entries) {
+      if (!this.once && this.hasEntered) {
+        this.$options.anime.pause();
+        this.$options.anime.reverse();
+        this.$options.anime.play();
+      }
+
+      this.$emit('leave', entries[0]);
+    },
+    // AnimeJS.
+    initAnime: function initAnime() {
+      var _this5 = this;
+
+      // if ( this.origin ) {
+      //    anime.set( this.$refs.letter, { transformOrigin: this.origin })
+      // }
+      this.$options.anime = (0,animejs__WEBPACK_IMPORTED_MODULE_0__.default)(_objectSpread(_objectSpread({
+        targets: this.$refs.letter,
+        autoplay: false,
+        loop: false
+      }, this.transitionStyle), {}, {
+        delay: this.stagger ? this.staggerOptions : '',
+        duration: this.reduceMotion == "true" ? 0 : this.duration,
+        easing: this.easing,
+        begin: function begin(anime) {
+          _this5.$emit('begin', anime);
+        },
+        complete: function complete(anime) {
+          _this5.$emit('complete', anime);
+        }
+      }));
+    },
+    warn: function warn(message) {
+      if (!vue__WEBPACK_IMPORTED_MODULE_2__.default.config.silent) {
+        console.error(message);
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./example/styles/main.scss":
+/*!**********************************!*\
+  !*** ./example/styles/main.scss ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ })
+
+},
+/******/ __webpack_require__ => { // webpackRuntimeModules
+/******/ "use strict";
+/******/ 
+/******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+/******/ __webpack_require__.O(0, ["css/main","/js/vendor"], () => (__webpack_exec__("./example/main.js"), __webpack_exec__("./example/styles/main.scss")));
+/******/ var __webpack_exports__ = __webpack_require__.O();
+/******/ }
+]);
 //# sourceMappingURL=main.js.map

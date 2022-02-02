@@ -53,16 +53,12 @@ dt {
 
 pre {
     //background-color: $gray-800;
-    color: $gray-200;
+    background: $blue-100;
+    border-radius: 8px;
+    color: $motion-dark;
     padding: $padding;
     white-space: pre-wrap;
     word-wrap: break-word;
-    background: $motion-med;
-    border-radius: 8px;
-
-    code {
-        color: #fff;
-    }
 }
 
 code {
@@ -71,4 +67,17 @@ code {
     font-family: 'dm';
     font-weight: 300;
     font-style: italic;
+
+    pre > & {
+        background: none;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    p > & {
+        background: $blue-100;
+        border-radius: 8px;
+        padding: 8px;
+    }
 }
+
