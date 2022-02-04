@@ -26,6 +26,11 @@ export default {
          required: false,
          default: 'span',
       },
+      wordTarget: {
+         type: Boolean,
+         required: false,
+         default: false,
+      },
       wordWrap: {
          type: Boolean,
          required: false,
@@ -98,6 +103,10 @@ export default {
    }),
 
    computed: {
+
+      animeTarget() {
+         return this.wordTarget ? this.$refs.word : this.$refs.letter
+      },
 
       observerOptions() {
          return {
@@ -176,7 +185,7 @@ export default {
                      return letter;
                   }
                })
-               return h("span", { class: `${this.block}__word`, style: this.buildStyles(index) }, wordArray )
+               return h("span", { class: `${this.block}__word`, ref: 'word', refInFor: true, style: this.buildStyles(index) }, wordArray )
             })
          }
 
@@ -288,11 +297,11 @@ export default {
 
       // AnimeJS.
       initAnime() {
-         // if ( this.origin ) {
-         //    anime.set( this.$refs.letter, { transformOrigin: this.origin })
-         // }
+         if ( this.origin ) {
+            anime.set( this.animeTarget, { transformOrigin: this.origin })
+         }
          this.$options.anime = anime({
-            targets: this.$refs.letter,
+            targets: this.animeTarget,
 
             autoplay: false,
             loop: false,

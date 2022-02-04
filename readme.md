@@ -34,6 +34,7 @@ MotionIO is a set of Vue components that use [Intersection Observer](https://dev
 | `block` | `String` | `false` | `'motionText` |
 | `mask` | `Boolean` | `false` | `false` |
 | `tag` | `String` | `false` | `'span'` |
+| `wordTarget` | `Boolean` | `false` | `false` |
 | `wordWrap` | `Boolean` | `false` | `true` |
 | `once` | `Boolean` | `false` | `false` |
 | `observerRoot` | `Object` | `false` | `{ root: null, rootMargin: '0px' }` |
