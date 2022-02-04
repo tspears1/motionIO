@@ -11,48 +11,84 @@ MotionIO is a set of Vue components that use [Intersection Observer](https://dev
 
 ## Props - Motion ( Vue )
 
-| Prop | Type      | Required  | Default   |
-| :--- | :-------- | :--------- | :------- |
-| `once` | `Boolean` | `false` | `false` |
-| `observerRoot` | `Object` | `false` | `{ root: null, rootMargin: '0px' }` |
-| `threshold`|`Function / Array / Number `| `false`| `0.5`|
-| `children` | `Array / Boolean` | `false` | `false` |
-|`custom`|`Object`|`false`|`null`|
-|`delay`|`Number / Function`|`false`|`0`|
-|`duration`|`Number / Function`|`false`| `1000` (ms)|
-|`easing`|`String / Function`|`false`|`'linear'`|
-|`origin`|`String`|`false`|`'center center'`|
-|`preset`|`String`|`false`|`'fadeIn'`|
-|`svg`|`Boolean`|`false`|`false`|
-|`stagger`| `Array / Number` |`false`| `null`|
+| Prop | Type      | Default   | Docs |
+| :--- | :-------- | :------- | :------|
+| `children` | `Array / Boolean` | `false` | [See below](#children)|
+| `custom`|`Object`|`null`| [AnimeJS](https://animejs.com/documentation)|
+| `delay`|`Number / Function`|`0`| [AnimeJS](https://animejs.com/documentation/#delay)|
+| `duration`|`Number / Function`| `1000` (ms)| [AnimeJS](https://animejs.com/documentation/#duration)|
+| `easing`|`String / Function`|`'linear'`| [AnimeJS](https://animejs.com/documentation/#easings)|
+| `observerRoot` | `Object` | `{ root: null, rootMargin: '0px' }` | [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
+| `once` | `Boolean` | `false` | [See below](#once)|
+| `origin`|`String`|`'center center'`| [CSS transform-origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
+| `preset`|`String`|`'fadeIn'`||
+| `stagger`| `Array / Number` | `null`| [AnimeJS](https://animejs.com/documentation)|
+| `svg`|`Boolean`|`false`| [AnimeJS](https://animejs.com/documentation/#lineDrawing)|
+| `threshold`|`Function / Array / Number `| `0.5`|[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
 
 ## Props - MotionText ( Vue )
 
-| Prop | Type      | Required  | Default   |
-| :--- | :-------- | :--------- | :------- |
-| `applyStyles` | `Boolean` | `false` | `true` |
-| `block` | `String` | `false` | `'motionText` |
-| `mask` | `Boolean` | `false` | `false` |
-| `tag` | `String` | `false` | `'span'` |
-| `wordTarget` | `Boolean` | `false` | `false` |
-| `wordWrap` | `Boolean` | `false` | `true` |
-| `once` | `Boolean` | `false` | `false` |
-| `observerRoot` | `Object` | `false` | `{ root: null, rootMargin: '0px' }` |
-| `threshold`|`Function / Array / Number `| `false`| `0.5`|
-| `children` | `Array / Boolean` | `false` | `false` |
-|`custom`|`Object`|`false`|`null`|
-|`delay`|`Number / Function`|`false`|`0`|
-|`duration`|`Number / Function`|`false`| `500` (ms)|
-|`easing`|`String / Function`|`false`|`'linear'`|
-|`origin`|`String`|`false`|`'center center'`|
-|`preset`|`String`|`false`|`'fadeIn'`|
-|`svg`|`Boolean`|`false`|`false`|
-|`stagger`| `Array / Number` |`false`| `100`|
+| Prop | Type      | Default   | Docs |
+| :--- | :-------- | :------- | :---- |
+| `applyStyles` | `Boolean` | `true` ||
+| `block` | `String` | `'motionText` ||
+| `custom`|`Object`|`null`|[AnimeJS](https://animejs.com/documentation)|
+| `delay`|`Number / Function`|`0`|[AnimeJS](https://animejs.com/documentation/#delay)|
+| `duration`|`Number / Function`| `500` (ms)|[AnimeJS](https://animejs.com/documentation/#duration)|
+| `easing`|`String / Function`|`'linear'`|[AnimeJS](https://animejs.com/documentation/#easings)|
+| `mask` | `Boolean` | `false` ||
+| `observerRoot` | `Object` | `{ root: null, rootMargin: '0px' }` |[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
+| `once` | `Boolean` | `false` ||
+| `origin`|`String`|`'center center'`|[CSS transform-origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)|
+| `preset`|`String`|`'fadeIn'`||
+| `stagger`| `Array / Number` | `100`|[AnimeJS](https://animejs.com/documentation/#staggering)|
+| `tag` | `String` | `'span'` ||
+| `threshold`|`Function / Array / Number `| `0.5`|[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
+| `wordTarget` | `Boolean` | `false` ||
+| `wordWrap` | `Boolean` | `true` ||
 
 ## Props - Intersect ( Vue )
 
-| Prop | Type      | Required  | Default   |
-| :--- | :-------- | :--------- | :------- |
-| `once` | `Boolean` | `false` | `false` |
-| `observerRoot` | `Object` | `false` | `{ root: null, rootMargin: '0px' }` |
-| `threshold`|`Function / Array / Number `| `false`| `0.5`|
+| Prop | Type      | Default   | Docs |
+| :--- | :-------- | :------- | :---- |
+| `once` | `Boolean` | `false` ||
+| `observerRoot` | `Object` | `{ root: null, rootMargin: '0px' }` |[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
+| `threshold`|`Function / Array / Number `| `0.5`|[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
+
+
+### `children`
+`true` to animate all direct children - works best when adding a `stagger`
+
+Also accepts an array of any child selectors (direct or nested) for more specificity.
+
+### `custom`
+Instead of using one of the presets, add your own custom anime object. 
+
+Does not support AnimeJS Timelines. `delay`, `duration` and `easing` should be applied by their props.
+
+
+Full list of options can be found in the [AnimeJS Documentation](https://animejs.com/documentation)
+
+#### Example
+```
+<motion :custom="{ rotateX: 50, opacity: [ 0, 1 ], translateX: '-100%' }" easing="easeOutExpo">
+    <div class="box__wrapper">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</motion>
+```
+
+### `once`
+If `true`, will only run the animation on first entrance with no exit animation.
+
+### `preset`
+Pre-built animations - see below for list and demos.
+
+### `stagger`
+AnimeJS natively has a built-in stagger function used with the delay property. This has been separated into it's own prop for ease. Accepts a number (milliseconds) or array of two numbers - a start and end value which will be distributed evenly.
+
+### `svg`
+If `true`, creates SVG path drawing animation using the `stroke-dashoffset` property.
+
