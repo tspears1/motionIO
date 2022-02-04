@@ -9,11 +9,7 @@ MotionIO is a set of Vue components that use [Intersection Observer](https://dev
 `Intersect` is purely the IntersectionObserver component, which emits events for entering and exiting that can be used to trigger callbacks. Best for css based animations or using a different animation library with.
 
 
-<<<<<<< HEAD
 ## Props: `Motion`
-=======
-## Props - Motion ( Vue )
->>>>>>> c9fbbf39ef0f181b5634c50a20c087839897a3a0
 
 | Prop | Type      | Default   | Docs |
 | :--- | :-------- | :------- | :------|
@@ -25,35 +21,21 @@ MotionIO is a set of Vue components that use [Intersection Observer](https://dev
 | `observerRoot` | `Object` | `{ root: null, rootMargin: '0px' }` | [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
 | `once` | `Boolean` | `false` | [See below](#once)|
 | `origin`|`String`|`'center center'`| [CSS transform-origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
-<<<<<<< HEAD
 | `preset`|`String`|`'fadeIn'`| [See below](#preset)|
-=======
-| `preset`|`String`|`'fadeIn'`||
->>>>>>> c9fbbf39ef0f181b5634c50a20c087839897a3a0
 | `stagger`| `Array / Number` | `null`| [AnimeJS](https://animejs.com/documentation)|
 | `svg`|`Boolean`|`false`| [AnimeJS](https://animejs.com/documentation/#lineDrawing)|
 | `threshold`|`Function / Array / Number `| `0.5`|[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
 
-<<<<<<< HEAD
 ## Props: `MotionText`
 
 | Prop | Type      | Default   | Docs |
 | :--- | :-------- | :------- | :---- |
 | `applyStyles` | `Boolean` | `true` |[See below](#applyStyles)|
 | `block` | `String` | `'motionText` |[See below](#block)|
-=======
-## Props - MotionText ( Vue )
-
-| Prop | Type      | Default   | Docs |
-| :--- | :-------- | :------- | :---- |
-| `applyStyles` | `Boolean` | `true` ||
-| `block` | `String` | `'motionText` ||
->>>>>>> c9fbbf39ef0f181b5634c50a20c087839897a3a0
 | `custom`|`Object`|`null`|[AnimeJS](https://animejs.com/documentation)|
 | `delay`|`Number / Function`|`0`|[AnimeJS](https://animejs.com/documentation/#delay)|
 | `duration`|`Number / Function`| `500` (ms)|[AnimeJS](https://animejs.com/documentation/#duration)|
 | `easing`|`String / Function`|`'linear'`|[AnimeJS](https://animejs.com/documentation/#easings)|
-<<<<<<< HEAD
 | `mask` | `Boolean` | `false` |[See below](#mask)|
 | `observerRoot` | `Object` | `{ root: null, rootMargin: '0px' }` |[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
 | `once` | `Boolean` | `false` |[See below](#once)|
@@ -70,29 +52,10 @@ MotionIO is a set of Vue components that use [Intersection Observer](https://dev
 | Prop | Type      | Default   | Docs |
 | :--- | :-------- | :------- | :---- |
 | `once` | `Boolean` | `false` |[See below](#once)|
-=======
-| `mask` | `Boolean` | `false` ||
-| `observerRoot` | `Object` | `{ root: null, rootMargin: '0px' }` |[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
-| `once` | `Boolean` | `false` ||
-| `origin`|`String`|`'center center'`|[CSS transform-origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)|
-| `preset`|`String`|`'fadeIn'`||
-| `stagger`| `Array / Number` | `100`|[AnimeJS](https://animejs.com/documentation/#staggering)|
-| `tag` | `String` | `'span'` ||
-| `threshold`|`Function / Array / Number `| `0.5`|[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
-| `wordTarget` | `Boolean` | `false` ||
-| `wordWrap` | `Boolean` | `true` ||
-
-## Props - Intersect ( Vue )
-
-| Prop | Type      | Default   | Docs |
-| :--- | :-------- | :------- | :---- |
-| `once` | `Boolean` | `false` ||
->>>>>>> c9fbbf39ef0f181b5634c50a20c087839897a3a0
 | `observerRoot` | `Object` | `{ root: null, rootMargin: '0px' }` |[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
 | `threshold`|`Function / Array / Number `| `0.5`|[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
 
 
-<<<<<<< HEAD
 ## Events
 
 |Event | Payload | Notes |
@@ -116,21 +79,14 @@ If `true` will add `display: inline-flex` and `margin-left: 0.25em` to each word
 String representing the first part of all css classes applied to DOM elements.
 
 
-=======
->>>>>>> c9fbbf39ef0f181b5634c50a20c087839897a3a0
 ### `children`
 `true` to animate all direct children - works best when adding a `stagger`
 
 Also accepts an array of any child selectors (direct or nested) for more specificity.
 
-<<<<<<< HEAD
 
 ### `custom`
 Instead of using one of the presets, add your own custom anime object.
-=======
-### `custom`
-Instead of using one of the presets, add your own custom anime object. 
->>>>>>> c9fbbf39ef0f181b5634c50a20c087839897a3a0
 
 Does not support AnimeJS Timelines. `delay`, `duration` and `easing` should be applied by their props.
 
@@ -148,7 +104,6 @@ Full list of options can be found in the [AnimeJS Documentation](https://animejs
 </motion>
 ```
 
-<<<<<<< HEAD
 
 ### `mask`
 If `true`, adds a clip-path mask around each word element.
@@ -161,18 +116,10 @@ If `true`, will only run the animation on first entrance with no exit animation.
 ### `preset`
 Pre-built animations. For list and examples, [View Demo](https://tspears1.github.io/motionIO/example/)
 
-=======
-### `once`
-If `true`, will only run the animation on first entrance with no exit animation.
-
-### `preset`
-Pre-built animations - see below for list and demos.
->>>>>>> c9fbbf39ef0f181b5634c50a20c087839897a3a0
 
 ### `stagger`
 AnimeJS natively has a built-in stagger function used with the delay property. This has been separated into it's own prop for ease. Accepts a number (milliseconds) or array of two numbers - a start and end value which will be distributed evenly.
 
-<<<<<<< HEAD
 
 ### `svg`
 If `true`, creates SVG path drawing animation using the `stroke-dashoffset` property.
@@ -189,8 +136,3 @@ If `true`, will animate each individual word element, instead of each letter.
 ### `wordWrap`
 If `true`, wraps letters in additional `div` to group each word. Required for most preset animations to work correctly.
 
-=======
-### `svg`
-If `true`, creates SVG path drawing animation using the `stroke-dashoffset` property.
-
->>>>>>> c9fbbf39ef0f181b5634c50a20c087839897a3a0
