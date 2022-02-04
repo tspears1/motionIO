@@ -228,7 +228,7 @@ export default {
             styles.display = 'inline-flex'
 
             if ( index > 0 ) {
-               styles.marginLeft = '0.8rem'
+               styles.marginLeft = '0.25em'
             }
          }
 

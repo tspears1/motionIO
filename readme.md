@@ -9,50 +9,130 @@ MotionIO is a set of Vue components that use [Intersection Observer](https://dev
 `Intersect` is purely the IntersectionObserver component, which emits events for entering and exiting that can be used to trigger callbacks. Best for css based animations or using a different animation library with.
 
 
-## Props - Motion ( Vue )
+## Props: `Motion`
 
-| Prop | Type      | Required  | Default   |
-| :--- | :-------- | :--------- | :------- |
-| `once` | `Boolean` | `false` | `false` |
-| `observerRoot` | `Object` | `false` | `{ root: null, rootMargin: '0px' }` |
-| `threshold`|`Function / Array / Number `| `false`| `0.5`|
-| `children` | `Array / Boolean` | `false` | `false` |
-|`custom`|`Object`|`false`|`null`|
-|`delay`|`Number / Function`|`false`|`0`|
-|`duration`|`Number / Function`|`false`| `1000` (ms)|
-|`easing`|`String / Function`|`false`|`'linear'`|
-|`origin`|`String`|`false`|`'center center'`|
-|`preset`|`String`|`false`|`'fadeIn'`|
-|`svg`|`Boolean`|`false`|`false`|
-|`stagger`| `Array / Number` |`false`| `null`|
+| Prop | Type      | Default   | Docs |
+| :--- | :-------- | :------- | :------|
+| `children` | `Array / Boolean` | `false` | [See below](#children)|
+| `custom`|`Object`|`null`| [AnimeJS](https://animejs.com/documentation)|
+| `delay`|`Number / Function`|`0`| [AnimeJS](https://animejs.com/documentation/#delay)|
+| `duration`|`Number / Function`| `1000` (ms)| [AnimeJS](https://animejs.com/documentation/#duration)|
+| `easing`|`String / Function`|`'linear'`| [AnimeJS](https://animejs.com/documentation/#easings)|
+| `observerRoot` | `Object` | `{ root: null, rootMargin: '0px' }` | [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
+| `once` | `Boolean` | `false` | [See below](#once)|
+| `origin`|`String`|`'center center'`| [CSS transform-origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
+| `preset`|`String`|`'fadeIn'`| [See below](#preset)|
+| `stagger`| `Array / Number` | `null`| [AnimeJS](https://animejs.com/documentation)|
+| `svg`|`Boolean`|`false`| [AnimeJS](https://animejs.com/documentation/#lineDrawing)|
+| `threshold`|`Function / Array / Number `| `0.5`|[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
 
-## Props - MotionText ( Vue )
+## Props: `MotionText`
 
-| Prop | Type      | Required  | Default   |
-| :--- | :-------- | :--------- | :------- |
-| `applyStyles` | `Boolean` | `false` | `true` |
-| `block` | `String` | `false` | `'motionText` |
-| `mask` | `Boolean` | `false` | `false` |
-| `tag` | `String` | `false` | `'span'` |
-| `wordTarget` | `Boolean` | `false` | `false` |
-| `wordWrap` | `Boolean` | `false` | `true` |
-| `once` | `Boolean` | `false` | `false` |
-| `observerRoot` | `Object` | `false` | `{ root: null, rootMargin: '0px' }` |
-| `threshold`|`Function / Array / Number `| `false`| `0.5`|
-| `children` | `Array / Boolean` | `false` | `false` |
-|`custom`|`Object`|`false`|`null`|
-|`delay`|`Number / Function`|`false`|`0`|
-|`duration`|`Number / Function`|`false`| `500` (ms)|
-|`easing`|`String / Function`|`false`|`'linear'`|
-|`origin`|`String`|`false`|`'center center'`|
-|`preset`|`String`|`false`|`'fadeIn'`|
-|`svg`|`Boolean`|`false`|`false`|
-|`stagger`| `Array / Number` |`false`| `100`|
+| Prop | Type      | Default   | Docs |
+| :--- | :-------- | :------- | :---- |
+| `applyStyles` | `Boolean` | `true` |[See below](#applyStyles)|
+| `block` | `String` | `'motionText` |[See below](#block)|
+| `custom`|`Object`|`null`|[AnimeJS](https://animejs.com/documentation)|
+| `delay`|`Number / Function`|`0`|[AnimeJS](https://animejs.com/documentation/#delay)|
+| `duration`|`Number / Function`| `500` (ms)|[AnimeJS](https://animejs.com/documentation/#duration)|
+| `easing`|`String / Function`|`'linear'`|[AnimeJS](https://animejs.com/documentation/#easings)|
+| `mask` | `Boolean` | `false` |[See below](#mask)|
+| `observerRoot` | `Object` | `{ root: null, rootMargin: '0px' }` |[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
+| `once` | `Boolean` | `false` |[See below](#once)|
+| `origin`|`String`|`'center center'`|[CSS transform-origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)|
+| `preset`|`String`|`'fadeIn'`|[See below](#preset)|
+| `stagger`| `Array / Number` | `100`|[AnimeJS](https://animejs.com/documentation/#staggering)|
+| `tag` | `String` | `'span'` |[See below](#tag)|
+| `threshold`|`Function / Array / Number `| `0.5`|[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
+| `wordTarget` | `Boolean` | `false` |[See below](#wordTarget)|
+| `wordWrap` | `Boolean` | `true` |[See below](#wordWrap)|
 
-## Props - Intersect ( Vue )
+## Props: `Intersect`
 
-| Prop | Type      | Required  | Default   |
-| :--- | :-------- | :--------- | :------- |
-| `once` | `Boolean` | `false` | `false` |
-| `observerRoot` | `Object` | `false` | `{ root: null, rootMargin: '0px' }` |
-| `threshold`|`Function / Array / Number `| `false`| `0.5`|
+| Prop | Type      | Default   | Docs |
+| :--- | :-------- | :------- | :---- |
+| `once` | `Boolean` | `false` |[See below](#once)|
+| `observerRoot` | `Object` | `{ root: null, rootMargin: '0px' }` |[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
+| `threshold`|`Function / Array / Number `| `0.5`|[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)|
+
+
+## Events
+
+|Event | Payload | Notes |
+| :--- | :------ | :---- |
+| `'change'` | entry.isIntersecting | Fires on every IO change. |
+| `'enter'` | entry | Fires on every IO entrance. |
+| `'leave'` | entry | Fires on every IO exit. |
+| `'begin'` | anime instance | Fires when animation begins. |
+| `'complete'` | anime instance | Fires when animation has completed. |
+
+## Scoped Slots
+All three components use scoped slots which allows you to directly pass the following to a nested component: `hasEntered`, `anime` (animejs instance object), `observer` ( intersection observer instance object)
+
+## Additional Documentation
+
+### `applyStyles`
+If `true` will add `display: inline-flex` and `margin-left: 0.25em` to each word wrapper.
+
+
+### `block`
+String representing the first part of all css classes applied to DOM elements.
+
+
+### `children`
+`true` to animate all direct children - works best when adding a `stagger`
+
+Also accepts an array of any child selectors (direct or nested) for more specificity.
+
+
+### `custom`
+Instead of using one of the presets, add your own custom anime object.
+
+Does not support AnimeJS Timelines. `delay`, `duration` and `easing` should be applied by their props.
+
+
+Full list of options can be found in the [AnimeJS Documentation](https://animejs.com/documentation)
+
+#### Example
+```
+<motion :custom="{ rotateX: 50, opacity: [ 0, 1 ], translateX: '-100%' }" easing="easeOutExpo">
+    <div class="box__wrapper">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</motion>
+```
+
+
+### `mask`
+If `true`, adds a clip-path mask around each word element.
+
+
+### `once`
+If `true`, will only run the animation on first entrance with no exit animation.
+
+
+### `preset`
+Pre-built animations. For list and examples, [View Demo](https://tspears1.github.io/motionIO/example/)
+
+
+### `stagger`
+AnimeJS natively has a built-in stagger function used with the delay property. This has been separated into it's own prop for ease. Accepts a number (milliseconds) or array of two numbers - a start and end value which will be distributed evenly.
+
+
+### `svg`
+If `true`, creates SVG path drawing animation using the `stroke-dashoffset` property.
+
+
+### `tag`
+HTML tag to use for the parent element.
+
+
+### `wordTarget`
+If `true`, will animate each individual word element, instead of each letter.
+
+
+### `wordWrap`
+If `true`, wraps letters in additional `div` to group each word. Required for most preset animations to work correctly.
+
